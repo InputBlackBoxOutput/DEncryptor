@@ -24,3 +24,22 @@ class CeasarCipher{
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
+class VigenereCipher{
+
+	public:
+		VigenereCipher(string keywrd) {
+			keyword = keywrd;
+		}
+
+		void createVigeneresSquare();
+		void encryptText();
+		void decryptText();
+
+	private:
+		string keyword {"DUOSVAVVM"}; //Shugborough inscription
+		string msg;
+		string code;
+		char vigenereSquare[26][26] {};
+		string index {"ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
+};
+///////////////////////////////////////////////////////////////////////////////////////////////////////
