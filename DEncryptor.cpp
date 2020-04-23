@@ -25,9 +25,14 @@ void CeasarCipher::encryptText() {
 	//cout << "Entered message:" << msg << endl;
 
     code = "";
+    msg = toUpper(msg);
 	for(unsigned int i=0; i< msg.length(); i++) {
-		if(isalnum(msg.at(i)))
-			code += msg.at(i) + shift;
+		if(isalnum(msg.at(i))) {
+			if(msg.at(i) + shift > 90)
+				code += (char)(65 + ((msg.at(i) + shift) % ('A' + 26)));
+			else
+				code += (char)(msg.at(i) + shift);
+		}
 		else
 			code += msg.at(i);
 	}
@@ -42,9 +47,13 @@ void CeasarCipher::decryptText() {
 	//cout << "Entered message:" << code <<endl;
 
     msg = "";
+    code = toUpper(code);
 	for(unsigned int i=0; i< code.length(); i++) {
 		if(isalnum(code.at(i)))
-			msg += code.at(i) - shift;
+			if(code.at(i) - shift < 65) 
+				msg += (char)(90 - 65 + (code.at(i) - shift) + 1);
+			else
+				msg += code.at(i) - shift;
 		else
 			msg += code.at(i);
 	}
@@ -143,6 +152,64 @@ void VigenereCipher::decryptText() {
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
+void AlbertiDiskCipher::encryptText() {
+    cout << "Enter the message you want to encrypt: ";
+	getline(cin, msg);
+	//cout << "Entered message:" << msg <<endl;
+
+	code = "";
+	msg = toUpper(msg);
+	for(unsigned int i=0; i<msg.length(); i++) {
+		if(isalpha(msg.at(i)))
+			code += rotating.at((stationary.find(msg.at(i))+shift)%26);
+		else {
+			if((int)msg.at(i) == (int)" ")
+				code += "_";
+			else
+				code += msg.at(i);
+
+			shift = rand()%26;
+			code += stationary.at(shift);
+		}
+	}
+
+	cout << "Encrypted message:" << code << endl;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+void AlbertiDiskCipher::decryptText() {
+    cout << "Enter the message you want to decrypt: ";
+   	getline(cin, code);
+	//cout << "Entered message:" << code <<endl;
+
+   	msg = "";
+   	shift = 0;
+	for(unsigned int i=0; i<code.length(); i++) {
+		if(isalpha(code.at(i)) && isupper(code.at(i))){
+			shift = stationary.find(code.at(i));
+			//cout << shift << endl;
+			continue;
+		}
+
+		if(isalpha(code.at(i))) {
+			if((signed int)rotating.find(code.at(i))-shift < 0)
+				msg += stationary.at(26 + (rotating.find(code.at(i))-shift));
+			else
+				msg += stationary.at((rotating.find(code.at(i))-shift));
+			// cout << msg << endl;
+		}
+		else {
+			if((int)code.at(i) == (int)"_")
+				msg += " ";
+			else
+				msg += code.at(i);
+		}
+	}
+
+	cout << "Decrypted message:" << msg << endl;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
 int main() {
     cout << "--------------------------------------------------------------------" << endl;
     cout << "Ceasar Cipher\n" << endl;
@@ -155,6 +222,12 @@ int main() {
     VigenereCipher DE2("BLACKBOX");
     DE2.encryptText();
     DE2.decryptText();
+    cout << "--------------------------------------------------------------------" << endl;
+
+    cout << "Alberti's Disk Cipher\n" << endl;
+    AlbertiDiskCipher DE3;
+    DE3.encryptText();
+    DE3.decryptText();
     cout << "--------------------------------------------------------------------" << endl;
 
      // cout << " Press any key to exit..." << endl;

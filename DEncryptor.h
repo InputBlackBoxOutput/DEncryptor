@@ -42,4 +42,20 @@ class VigenereCipher{
 		char vigenereSquare[26][26] {};
 		string index {"ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
 };
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+class AlbertiDiskCipher{
+
+	public:
+		void encryptText();
+		void decryptText();
+
+	private:
+		string stationary {"ABHCDJEWFGILMYKNOPQRUSTVXZ"};
+		string rotating   {"qxsewfgknboaphcdjtvilmyzru"};
+		int shift {0};
+		string msg;
+		string code;
+};
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
