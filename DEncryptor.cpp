@@ -50,7 +50,7 @@ void CeasarCipher::decryptText() {
     code = toUpper(code);
 	for(unsigned int i=0; i< code.length(); i++) {
 		if(isalnum(code.at(i)))
-			if(code.at(i) - shift < 65) 
+			if(code.at(i) - shift < 65)
 				msg += (char)(90 - 65 + (code.at(i) - shift) + 1);
 			else
 				msg += code.at(i) - shift;
@@ -210,6 +210,91 @@ void AlbertiDiskCipher::decryptText() {
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
+void MorseCode::generateMorseCodeMap() {
+
+morse.push_back( make_pair('A',"01") );
+morse.push_back( make_pair('B',"1000") );
+morse.push_back( make_pair('C',"1010") );
+morse.push_back( make_pair('D',"100") );
+morse.push_back( make_pair('E',"0") );
+morse.push_back( make_pair('F',"0010") );
+morse.push_back( make_pair('G',"110") );
+morse.push_back( make_pair('H',"0000") );
+morse.push_back( make_pair('I',"00") );
+morse.push_back( make_pair('J',"0111") );
+morse.push_back( make_pair('K',"101") );
+morse.push_back( make_pair('L',"0100") );
+morse.push_back( make_pair('M',"11") );
+morse.push_back( make_pair('N',"10") );
+morse.push_back( make_pair('O',"111") );
+morse.push_back( make_pair('P',"0110") );
+morse.push_back( make_pair('Q',"1101") );
+morse.push_back( make_pair('R',"010") );
+morse.push_back( make_pair('S',"000") );
+morse.push_back( make_pair('T',"1") );
+morse.push_back( make_pair('U',"001") );
+morse.push_back( make_pair('V',"0001") );
+morse.push_back( make_pair('W',"011") );
+morse.push_back( make_pair('X',"1001") );
+morse.push_back( make_pair('Y',"1011") );
+morse.push_back( make_pair('Z',"1100") );
+
+// cout << morse[0].first << " " << morse[0].second << endl;   // A 01
+// cout << morse[7].first << " " << morse[7].second << endl;   // H 0000
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+void MorseCode::convertToMorseCode() {
+	cout << "Enter the message you want to encrypt: ";
+	getline(cin, msg);
+	//cout << "Entered message:" << msg <<endl;
+
+	code = "";
+	msg = toUpper(msg);
+	for(unsigned int i=0; i<msg.length(); i++) {
+		if(isalpha(msg.at(i)))
+			for(int j=0; j<morse.size(); j++) {
+				if(morse[j].first == msg.at(i)) {
+					code += morse[j].second + " ";
+					break;
+				}
+			}
+		else
+			code += msg.at(i);
+
+	}
+
+	cout << "Encrypted message:" << code << endl;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+void MorseCode::convertFromMorseCode() {
+cout << "Enter the message you want to decrypt: ";
+   	getline(cin, code);
+	//cout << "Entered message:" << code <<endl;
+
+   	msg = "";
+   	string temp;
+	for(unsigned int i=0; i<code.length();) {
+		if(code.at(i)=='0' || code.at(i)=='1') {
+			temp = "";
+			while((const char)code.at(i) != (const char)32) {
+				temp += code.at(i);
+				i++;
+			}
+			cout << temp << endl;
+		}
+		else {
+			msg += code.at(i);
+			i++;
+		}
+
+	}
+
+	cout << "Decrypted message:" << msg << endl;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
 int main() {
     cout << "--------------------------------------------------------------------" << endl;
     cout << "Ceasar Cipher\n" << endl;
@@ -228,6 +313,13 @@ int main() {
     AlbertiDiskCipher DE3;
     DE3.encryptText();
     DE3.decryptText();
+    cout << "--------------------------------------------------------------------" << endl;
+
+    cout << "MorseCode\n" << endl;
+    MorseCode Morse;
+    Morse.generateMorseCodeMap();
+    Morse.convertToMorseCode();
+    //Morse.convertFromMorseCode();
     cout << "--------------------------------------------------------------------" << endl;
 
      // cout << " Press any key to exit..." << endl;

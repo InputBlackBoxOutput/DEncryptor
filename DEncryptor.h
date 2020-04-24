@@ -2,11 +2,12 @@
 #include <iostream>
 #include <cctype>
 #include <string>
-//#include <random>
+#include <vector>
+#include <utility>
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
 using namespace std;
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 class CeasarCipher{
 
 	public:
@@ -54,6 +55,20 @@ class AlbertiDiskCipher{
 		string stationary {"ABHCDJEWFGILMYKNOPQRUSTVXZ"};
 		string rotating   {"qxsewfgknboaphcdjtvilmyzru"};
 		int shift {0};
+		string msg;
+		string code;
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+class MorseCode{
+
+	public:
+	    void generateMorseCodeMap();
+		void convertToMorseCode();
+		void convertFromMorseCode();
+
+	private:
+		vector< pair <char, string>> morse;
 		string msg;
 		string code;
 };
