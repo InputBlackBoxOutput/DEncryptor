@@ -245,7 +245,7 @@ morse.push_back( make_pair('Z',"1100") );
 
 //////////////////////////////////////////////////////////////////////////////////////////
 void MorseCode::convertToMorseCode() {
-	cout << "Enter the message you want to encrypt: ";
+	cout << "Enter the message:";
 	getline(cin, msg);
 	//cout << "Entered message:" << msg <<endl;
 
@@ -253,9 +253,10 @@ void MorseCode::convertToMorseCode() {
 	msg = toUpper(msg);
 	for(unsigned int i=0; i<msg.length(); i++) {
 		if(isalpha(msg.at(i)))
-			for(int j=0; j<morse.size(); j++) {
+			for(unsigned int j=0; j<morse.size(); j++) {
 				if(morse[j].first == msg.at(i)) {
-					code += morse[j].second + " ";
+					code += morse[j].second;
+					if(i != msg.length() - 1) code += "-";
 					break;
 				}
 			}
@@ -264,34 +265,43 @@ void MorseCode::convertToMorseCode() {
 
 	}
 
-	cout << "Encrypted message:" << code << endl;
+	cout << "Morse code:" << code << endl;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 void MorseCode::convertFromMorseCode() {
-cout << "Enter the message you want to decrypt: ";
+cout << "Enter the code: ";
    	getline(cin, code);
 	//cout << "Entered message:" << code <<endl;
 
    	msg = "";
    	string temp;
-	for(unsigned int i=0; i<code.length();) {
-		if(code.at(i)=='0' || code.at(i)=='1') {
-			temp = "";
-			while((const char)code.at(i) != (const char)32) {
-				temp += code.at(i);
-				i++;
-			}
-			cout << temp << endl;
-		}
-		else {
-			msg += code.at(i);
+   	unsigned int i {0};
+   	bool found {false};
+   	code += "~";
+
+	while(i<code.length()) {
+		temp = "";
+
+		while((char)code.at(i) =='1' || (char)code.at(i) == '0') {
+			temp += code.at(i);
 			i++;
 		}
+		if(i<code.length()) i++;
 
+		found = false;
+		for(unsigned int j=0; j< morse.size(); j++) {
+			if(morse[j].second == temp) {
+				msg += morse[j].first;
+				found = true;
+				break;
+			}
+		}
+
+		if(found == false) code+= " Error ";
 	}
 
-	cout << "Decrypted message:" << msg << endl;
+	cout << "Message:" << msg << endl;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -315,15 +325,15 @@ int main() {
     DE3.decryptText();
     cout << "--------------------------------------------------------------------" << endl;
 
-    cout << "MorseCode\n" << endl;
+    cout << "Morse Code\n" << endl;
     MorseCode Morse;
     Morse.generateMorseCodeMap();
     Morse.convertToMorseCode();
-    //Morse.convertFromMorseCode();
+    Morse.convertFromMorseCode();
     cout << "--------------------------------------------------------------------" << endl;
 
-     // cout << " Press any key to exit..." << endl;
-     // getchar();   //wait until any key is pressed
+    // cout << " Press any key to exit..." << endl;
+    // getchar();   //wait until any key is pressed
     return 0;
 }
 
