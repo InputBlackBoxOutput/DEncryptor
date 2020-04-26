@@ -157,6 +157,8 @@ void AlbertiDiskCipher::encryptText() {
 	getline(cin, msg);
 	//cout << "Entered message:" << msg <<endl;
 
+	srand(time(nullptr));
+
 	code = "";
 	msg = toUpper(msg);
 	for(unsigned int i=0; i<msg.length(); i++) {
@@ -305,6 +307,147 @@ cout << "Enter the code: ";
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
+
+string PlayFairCipher::encrypt(string mssge) {
+    toEncrypt = true;
+
+    string code {};
+    char last_char {'~'};
+    mssge = toUpper(mssge);
+
+    if(mssge.length()%2 != 0){
+        last_char = mssge.at(mssge.length()-1);
+        mssge.erase(mssge.length()-1);
+    }
+  size_t i {0};
+  while(i<mssge.length()-1){
+    if(isalpha(mssge.at(i)) && isalpha(mssge.at(i+1))) {
+     //cout << mssge.substr(i,2) << endl;
+     encryptDecryptPieces(mssge.substr(i,2));
+     code += msg;
+    }
+    else {
+     //cout << mssge.substr(i,2) << endl;
+     code += mssge.substr(i,2);
+    }
+     i += 2;
+  }
+
+  if(last_char != '~') code += last_char;
+  return code;
+}
+
+
+void PlayFairCipher::encryptDecryptPieces(string message) {
+    int j,k,p,q;
+	string nmsg {};
+
+    getText( msg, true, toEncrypt );
+    msg = message;
+    int dir = (toEncrypt)? 1: -1;
+
+	for( string::const_iterator it = msg.begin(); it != msg.end(); it++ ) {
+        if( getPos( *it++, j, k ))
+	        if( getPos( *it, p, q)) {
+	            //for same row
+	            if( j == p ) {
+	               nmsg+= getChar( j, k + dir );
+	               nmsg += getChar( p, q + dir );
+	            }
+	            //for same column
+	            else if( k == q ) {
+	               nmsg += getChar( j + dir, k );
+	               nmsg += getChar( p + dir, q );
+	            }
+	            else {
+	               nmsg += getChar( p, k );
+	               nmsg += getChar( j, q );
+	            }
+            }
+        msg = nmsg;
+    }
+}
+
+char PlayFairCipher::getChar( int a, int b ) {
+      return n[ (b + 5) % 5 ][ (a + 5) % 5 ];
+}
+
+bool PlayFairCipher::getPos( char l, int &c, int &d ) {
+    for( int y = 0; y < 5; y++ )
+    	for( int x = 0; x < 5; x++ )
+      		if( n[y][x] == l ) {
+        		c = x;
+        		d= y;
+      			return true;
+      		}
+    return false;
+}
+
+void PlayFairCipher::getText( string t, bool m, bool e ) {
+    for( string::iterator it = t.begin(); it != t.end(); it++ ) {
+        //to choose J = I or no Q in the alphabet.
+        *it = toupper( *it );
+        if( *it < 65 || *it > 90 )
+            continue;
+        if( *it == 'J' && m )
+            *it = 'I';
+        else if( *it == 'Q' && !m )
+            continue;
+        msg += *it;
+      }
+
+      if( e ) {
+        string nmsg = ""; size_t len = msg.length();
+        for( size_t x = 0; x < len; x += 2 ) {
+            nmsg += msg[x];
+            if( x + 1 < len ) {
+               if( msg[x] == msg[x + 1] ) nmsg += 'X';
+               nmsg += msg[x + 1];
+            }
+        }
+        msg = nmsg;
+      }
+
+      if( msg.length() & 1 )
+      msg += 'X';
+}
+
+
+void PlayFairCipher::createEncoder( string key, bool m ) { 
+    if( key.length() < 1 )
+    key= "KEYWORD";
+    key += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    string s= "";
+    	for( string::iterator it = key.begin(); it != key.end(); it++ ) {
+        	*it = toupper( *it );
+        	if( *it < 65 || *it > 90 )
+            	continue;
+        	if( ( *it == 'J' && m ) || ( *it == 'Q' && !m ) )
+            	continue;
+        	if( s.find( *it ) == -1 )
+            	s += *it;
+      	}
+	copy( s.begin(), s.end(), &n[0][0] );
+}
+
+void PlayFairCipher::displayGrid() {
+    for(int i=0; i<5; i++) {
+        for(int j=0; j<5; j++) {
+            cout << n[i][j];
+        }
+        cout << endl;
+    }
+}
+
+
+// int main( int argc, char* argv[] ) {
+//     PlayFairCipher pf("cool");
+//     cout << pf.encrypt("Fun at school") << endl;
+//     return 0;
+// }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
 int main() {
     cout << "--------------------------------------------------------------------" << endl;
     cout << "Ceasar Cipher\n" << endl;
@@ -324,7 +467,12 @@ int main() {
     DE3.encryptText();
     DE3.decryptText();
     cout << "--------------------------------------------------------------------" << endl;
+    
+    cout << "Play Fair Cipher\n" << endl;
+    PlayFairCipher pf("cool");
+    cout << pf.encrypt("Fun at school") << endl;
 
+    cout << "--------------------------------------------------------------------" << endl;
     cout << "Morse Code\n" << endl;
     MorseCode Morse;
     Morse.generateMorseCodeMap();
@@ -338,3 +486,4 @@ int main() {
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
+// EOF
