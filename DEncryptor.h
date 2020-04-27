@@ -63,30 +63,6 @@ class AlbertiDiskCipher{
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 class PlayFairCipher {
 public:
-    PlayFairCipher(string key, bool encrypt) {
-        createEncoder( key, true );
-        toEncrypt = encrypt;
-    }
-
-    string encryptDecrypt(string message);
-	void encryptDecryptPieces(string message);
-
-
-private:
-    void createEncoder( string k, bool m );
-    void displayGrid();
-	char getChar( int a, int b );
-	bool getPos( char l, int &c, int &d );
-    void getText( string t, bool m, bool e );
-
-	char n[5][5];
-	bool toEncrypt {true};
-	string msg {};
-};
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-class PlayFairCipher {
-public:
     PlayFairCipher(string key) {
         createEncoder( key, true );
     }

@@ -212,101 +212,6 @@ void AlbertiDiskCipher::decryptText() {
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-void MorseCode::generateMorseCodeMap() {
-
-morse.push_back( make_pair('A',"01") );
-morse.push_back( make_pair('B',"1000") );
-morse.push_back( make_pair('C',"1010") );
-morse.push_back( make_pair('D',"100") );
-morse.push_back( make_pair('E',"0") );
-morse.push_back( make_pair('F',"0010") );
-morse.push_back( make_pair('G',"110") );
-morse.push_back( make_pair('H',"0000") );
-morse.push_back( make_pair('I',"00") );
-morse.push_back( make_pair('J',"0111") );
-morse.push_back( make_pair('K',"101") );
-morse.push_back( make_pair('L',"0100") );
-morse.push_back( make_pair('M',"11") );
-morse.push_back( make_pair('N',"10") );
-morse.push_back( make_pair('O',"111") );
-morse.push_back( make_pair('P',"0110") );
-morse.push_back( make_pair('Q',"1101") );
-morse.push_back( make_pair('R',"010") );
-morse.push_back( make_pair('S',"000") );
-morse.push_back( make_pair('T',"1") );
-morse.push_back( make_pair('U',"001") );
-morse.push_back( make_pair('V',"0001") );
-morse.push_back( make_pair('W',"011") );
-morse.push_back( make_pair('X',"1001") );
-morse.push_back( make_pair('Y',"1011") );
-morse.push_back( make_pair('Z',"1100") );
-
-// cout << morse[0].first << " " << morse[0].second << endl;   // A 01
-// cout << morse[7].first << " " << morse[7].second << endl;   // H 0000
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////
-void MorseCode::convertToMorseCode() {
-	cout << "Enter the message:";
-	getline(cin, msg);
-	//cout << "Entered message:" << msg <<endl;
-
-	code = "";
-	msg = toUpper(msg);
-	for(unsigned int i=0; i<msg.length(); i++) {
-		if(isalpha(msg.at(i)))
-			for(unsigned int j=0; j<morse.size(); j++) {
-				if(morse[j].first == msg.at(i)) {
-					code += morse[j].second;
-					if(i != msg.length() - 1) code += "-";
-					break;
-				}
-			}
-		else
-			code += msg.at(i);
-
-	}
-
-	cout << "Morse code:" << code << endl;
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////
-void MorseCode::convertFromMorseCode() {
-cout << "Enter the code: ";
-   	getline(cin, code);
-	//cout << "Entered message:" << code <<endl;
-
-   	msg = "";
-   	string temp;
-   	unsigned int i {0};
-   	bool found {false};
-   	code += "~";
-
-	while(i<code.length()) {
-		temp = "";
-
-		while((char)code.at(i) =='1' || (char)code.at(i) == '0') {
-			temp += code.at(i);
-			i++;
-		}
-		if(i<code.length()) i++;
-
-		found = false;
-		for(unsigned int j=0; j< morse.size(); j++) {
-			if(morse[j].second == temp) {
-				msg += morse[j].first;
-				found = true;
-				break;
-			}
-		}
-
-		if(found == false) code+= " Error ";
-	}
-
-	cout << "Message:" << msg << endl;
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////
 
 string PlayFairCipher::encrypt(string mssge) {
     toEncrypt = true;
@@ -322,21 +227,49 @@ string PlayFairCipher::encrypt(string mssge) {
   size_t i {0};
   while(i<mssge.length()-1){
     if(isalpha(mssge.at(i)) && isalpha(mssge.at(i+1))) {
-     //cout << mssge.substr(i,2) << endl;
-     encryptDecryptPieces(mssge.substr(i,2));
-     code += msg;
+    	//cout << mssge.substr(i,2) << endl;
+    	encryptDecryptPieces(mssge.substr(i,2));
+    	code += msg;
     }
     else {
-     //cout << mssge.substr(i,2) << endl;
-     code += mssge.substr(i,2);
+    	//cout << mssge.substr(i,2) << endl;
+    	code += mssge.substr(i,2);
     }
-     i += 2;
+    
+    i += 2;
   }
 
   if(last_char != '~') code += last_char;
   return code;
 }
 
+string PlayFairCipher::decrypt(string code) {
+    toEncrypt = false;
+
+    string mssge {};
+    char last_char {'~'};
+    code = toUpper(code);
+
+    if(code.length()%2 != 0){
+        last_char = code.at(code.length()-1);
+        code.erase(code.length()-1);
+    }
+  size_t i {0};
+  while(i<code.length()-1){
+    if(isalpha(code.at(i)) && isalpha(code.at(i+1))) {
+    	encryptDecryptPieces(code.substr(i,2));
+    	mssge += msg;
+    }
+    else {
+    	mssge += code.substr(i,2);
+    }
+
+    i += 2;
+  }
+
+  if(last_char != '~') mssge += last_char;
+  return mssge;
+}
 
 void PlayFairCipher::encryptDecryptPieces(string message) {
     int j,k,p,q;
@@ -446,6 +379,100 @@ void PlayFairCipher::displayGrid() {
 //     return 0;
 // }
 
+//////////////////////////////////////////////////////////////////////////////////////////
+void MorseCode::generateMorseCodeMap() {
+
+morse.push_back( make_pair('A',"01") );
+morse.push_back( make_pair('B',"1000") );
+morse.push_back( make_pair('C',"1010") );
+morse.push_back( make_pair('D',"100") );
+morse.push_back( make_pair('E',"0") );
+morse.push_back( make_pair('F',"0010") );
+morse.push_back( make_pair('G',"110") );
+morse.push_back( make_pair('H',"0000") );
+morse.push_back( make_pair('I',"00") );
+morse.push_back( make_pair('J',"0111") );
+morse.push_back( make_pair('K',"101") );
+morse.push_back( make_pair('L',"0100") );
+morse.push_back( make_pair('M',"11") );
+morse.push_back( make_pair('N',"10") );
+morse.push_back( make_pair('O',"111") );
+morse.push_back( make_pair('P',"0110") );
+morse.push_back( make_pair('Q',"1101") );
+morse.push_back( make_pair('R',"010") );
+morse.push_back( make_pair('S',"000") );
+morse.push_back( make_pair('T',"1") );
+morse.push_back( make_pair('U',"001") );
+morse.push_back( make_pair('V',"0001") );
+morse.push_back( make_pair('W',"011") );
+morse.push_back( make_pair('X',"1001") );
+morse.push_back( make_pair('Y',"1011") );
+morse.push_back( make_pair('Z',"1100") );
+
+// cout << morse[0].first << " " << morse[0].second << endl;   // A 01
+// cout << morse[7].first << " " << morse[7].second << endl;   // H 0000
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+void MorseCode::convertToMorseCode() {
+	cout << "Enter the message:";
+	getline(cin, msg);
+	//cout << "Entered message:" << msg <<endl;
+
+	code = "";
+	msg = toUpper(msg);
+	for(unsigned int i=0; i<msg.length(); i++) {
+		if(isalpha(msg.at(i)))
+			for(unsigned int j=0; j<morse.size(); j++) {
+				if(morse[j].first == msg.at(i)) {
+					code += morse[j].second;
+					if(i != msg.length() - 1) code += "-";
+					break;
+				}
+			}
+		else
+			code += msg.at(i);
+
+	}
+
+	cout << "Morse code:" << code << endl;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+void MorseCode::convertFromMorseCode() {
+cout << "Enter the code: ";
+   	getline(cin, code);
+	//cout << "Entered message:" << code <<endl;
+
+   	msg = "";
+   	string temp;
+   	unsigned int i {0};
+   	bool found {false};
+   	code += "~";
+
+	while(i<code.length()) {
+		temp = "";
+
+		while((char)code.at(i) =='1' || (char)code.at(i) == '0') {
+			temp += code.at(i);
+			i++;
+		}
+		if(i<code.length()) i++;
+
+		found = false;
+		for(unsigned int j=0; j< morse.size(); j++) {
+			if(morse[j].second == temp) {
+				msg += morse[j].first;
+				found = true;
+				break;
+			}
+		}
+
+		if(found == false) code+= " Error ";
+	}
+
+	cout << "Message:" << msg << endl;
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////
 int main() {
@@ -468,11 +495,20 @@ int main() {
     DE3.decryptText();
     cout << "--------------------------------------------------------------------" << endl;
     
+    string inpt {};
+    string oupt {};
     cout << "Play Fair Cipher\n" << endl;
+    
     PlayFairCipher pf("cool");
-    cout << pf.encrypt("Fun at school") << endl;
-
-    cout << "--------------------------------------------------------------------" << endl;
+    cout << "Enter message:";
+    getline(cin, inpt);
+    oupt = pf.encrypt(inpt);
+    
+    cout << oupt << endl;
+    cout << "Decrypting message:\n";
+    cout << pf.decrypt(oupt) << endl;
+	cout << "--------------------------------------------------------------------" << endl;
+    
     cout << "Morse Code\n" << endl;
     MorseCode Morse;
     Morse.generateMorseCodeMap();
