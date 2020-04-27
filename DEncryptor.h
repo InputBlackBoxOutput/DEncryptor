@@ -9,10 +9,10 @@
 using namespace std;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-class CeasarCipher{
+class CaesarCipher{
 
 	public:
-		CeasarCipher(int sft) {
+		CaesarCipher(int sft) {
 			shift = sft;
 		}
 
@@ -31,6 +31,7 @@ class VigenereCipher{
 	public:
 		VigenereCipher(string keywrd) {
 			keyword = keywrd;
+			createVigeneresSquare();
 		}
 
 		void createVigeneresSquare();
@@ -67,8 +68,8 @@ public:
         createEncoder( key, true );
     }
 
-    string encrypt(string mssge);
-    string decrypt(string code);
+    string encrypt();
+    string decrypt();
 	void encryptDecryptPieces(string message);
 
 
@@ -82,12 +83,17 @@ private:
 	char n[5][5];
 	bool toEncrypt {true};
 	string msg {};
+	string inpt {};
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 class MorseCode{
 
 	public:
+		MorseCode() {
+			generateMorseCodeMap();
+		}
+
 	    void generateMorseCodeMap();
 		void convertToMorseCode();
 		void convertFromMorseCode();

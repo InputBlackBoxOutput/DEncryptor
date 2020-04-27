@@ -18,7 +18,7 @@ string toLower(string str) {
 
 
 //////////////////////////////////////////////////////////////////////////////////////////
-void CeasarCipher::encryptText() {
+void CaesarCipher::encryptText() {
     cout << "Enter the message you want to encrypt: ";
    	getline(cin, msg);
 
@@ -40,7 +40,7 @@ void CeasarCipher::encryptText() {
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-void CeasarCipher::decryptText() {
+void CaesarCipher::decryptText() {
     cout << "Enter the message you want to decrypt: ";
    	getline(cin, code);
 
@@ -89,8 +89,6 @@ void VigenereCipher::createVigeneresSquare() {
 
 //////////////////////////////////////////////////////////////////////////////////////////
 void VigenereCipher::encryptText() {
-	createVigeneresSquare();
-
     cout << "Enter the message you want to encrypt: ";
 	getline(cin, msg);
 	//cout << "Entered message:" << code <<endl;
@@ -213,61 +211,73 @@ void AlbertiDiskCipher::decryptText() {
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-string PlayFairCipher::encrypt(string mssge) {
+string PlayFairCipher::encrypt() {
+  cout << "Enter the message you want to encrypt: ";
+  getline(cin, inpt);
+  //cout << "Entered message:" << inpt <<endl;
+
     toEncrypt = true;
 
     string code {};
     char last_char {'~'};
-    mssge = toUpper(mssge);
+    inpt = toUpper(inpt);
 
-    if(mssge.length()%2 != 0){
-        last_char = mssge.at(mssge.length()-1);
-        mssge.erase(mssge.length()-1);
+    if(inpt.length()%2 != 0){
+        last_char = inpt.at(inpt.length()-1);
+        inpt.erase(inpt.length()-1);
     }
   size_t i {0};
-  while(i<mssge.length()-1){
-    if(isalpha(mssge.at(i)) && isalpha(mssge.at(i+1))) {
-    	//cout << mssge.substr(i,2) << endl;
-    	encryptDecryptPieces(mssge.substr(i,2));
-    	code += msg;
+  while(i<inpt.length()-1){
+    if(isalpha(inpt.at(i)) && isalpha(inpt.at(i+1))) {
+      //cout << inpt.substr(i,2) << endl;
+      encryptDecryptPieces(inpt.substr(i,2));
+      code += msg;
     }
     else {
-    	//cout << mssge.substr(i,2) << endl;
-    	code += mssge.substr(i,2);
+      //cout << inpt.substr(i,2) << endl;
+      code += inpt.substr(i,2);
     }
-    
+
     i += 2;
   }
 
   if(last_char != '~') code += last_char;
+
+  cout << "Encrypted message:" << code << endl;
   return code;
 }
 
-string PlayFairCipher::decrypt(string code) {
+string PlayFairCipher::decrypt() {
+	cout << "Enter the message you want to decrypt: ";
+   	getline(cin, inpt);
+	//cout << "Entered message:" << inpt <<endl;
+
     toEncrypt = false;
 
     string mssge {};
     char last_char {'~'};
-    code = toUpper(code);
+    inpt = toUpper(inpt);
 
-    if(code.length()%2 != 0){
-        last_char = code.at(code.length()-1);
-        code.erase(code.length()-1);
+    if(inpt.length()%2 != 0){
+        last_char = inpt.at(inpt.length()-1);
+        inpt.erase(inpt.length()-1);
     }
   size_t i {0};
-  while(i<code.length()-1){
-    if(isalpha(code.at(i)) && isalpha(code.at(i+1))) {
-    	encryptDecryptPieces(code.substr(i,2));
+  while(i<inpt.length()-1){
+    if(isalpha(inpt.at(i)) && isalpha(inpt.at(i+1))) {
+    	encryptDecryptPieces(inpt.substr(i,2));
     	mssge += msg;
     }
     else {
-    	mssge += code.substr(i,2);
+    	mssge += inpt.substr(i,2);
     }
 
     i += 2;
   }
 
   if(last_char != '~') mssge += last_char;
+
+  cout << "Decrypted message:" << mssge << endl;
   return mssge;
 }
 
@@ -346,7 +356,7 @@ void PlayFairCipher::getText( string t, bool m, bool e ) {
 }
 
 
-void PlayFairCipher::createEncoder( string key, bool m ) { 
+void PlayFairCipher::createEncoder( string key, bool m ) {
     if( key.length() < 1 )
     key= "KEYWORD";
     key += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -476,45 +486,85 @@ cout << "Enter the code: ";
 
 //////////////////////////////////////////////////////////////////////////////////////////
 int main() {
-    cout << "--------------------------------------------------------------------" << endl;
-    cout << "Ceasar Cipher\n" << endl;
-    CeasarCipher DE1(5);  // Shift = 5
-    DE1.encryptText();
-    DE1.decryptText();
-    cout << "--------------------------------------------------------------------" << endl;
-
-    cout << "Vigenere Cipher\n" << endl;
-    VigenereCipher DE2("BLACKBOX");
-    DE2.encryptText();
-    DE2.decryptText();
-    cout << "--------------------------------------------------------------------" << endl;
-
-    cout << "Alberti's Disk Cipher\n" << endl;
-    AlbertiDiskCipher DE3;
-    DE3.encryptText();
-    DE3.decryptText();
-    cout << "--------------------------------------------------------------------" << endl;
-    
-    string inpt {};
-    string oupt {};
-    cout << "Play Fair Cipher\n" << endl;
-    
-    PlayFairCipher pf("cool");
-    cout << "Enter message:";
-    getline(cin, inpt);
-    oupt = pf.encrypt(inpt);
-    
-    cout << oupt << endl;
-    cout << "Decrypting message:\n";
-    cout << pf.decrypt(oupt) << endl;
 	cout << "--------------------------------------------------------------------" << endl;
-    
-    cout << "Morse Code\n" << endl;
-    MorseCode Morse;
-    Morse.generateMorseCodeMap();
-    Morse.convertToMorseCode();
-    Morse.convertFromMorseCode();
-    cout << "--------------------------------------------------------------------" << endl;
+	cout << "DEncryptor\n" << endl;
+	cout << "--------------------------------------------------------------------" << endl;
+
+	int choice {0};
+	int process {0};
+	do {
+	cout << "\nWhich cipher do you want to use?" << endl;
+	cout << "1 - Caesar cipher \n2 - Vigenere Cipher" << endl;
+	cout << "3 - Alberti's Disk Cipher\n4 - Playfair Cipher\n" << endl;
+	cout << "Enter choice:";
+	cin >> choice;
+
+	cout << "\nDo you want to encrypt or decrpyt?" << endl;
+	cout << "0 - Encrypt \n1 - Decrypt" << endl;
+	cout << "Enter choice:";
+	cin >> process;
+
+	} while((choice < 1 || choice > 4) && (process == 0 || process == 1 ));
+
+    cin.sync(); // Clear buffer
+
+	switch(choice) {
+		case 1: cout << "--------------------------------------------------------------------" << endl;
+			    cout << "Caesar Cipher\n" << endl;
+                {
+                    CaesarCipher DE1(5);  // Shift = 5
+                    if(process)
+                    	DE1.decryptText();
+                    else
+                    	DE1.encryptText();
+
+                }
+			    break;
+
+		case 2: cout << "--------------------------------------------------------------------" << endl;
+			    cout << "Vigenere Cipher\n" << endl;
+			    {
+                    VigenereCipher DE2("BLACKBOX");
+                    if(process)
+                    	DE2.decryptText();
+                    else
+                    	DE2.encryptText();
+			    }
+			    break;
+
+		case 3: cout << "--------------------------------------------------------------------" << endl;
+    			cout << "Alberti's Disk Cipher\n" << endl;
+                {
+                    AlbertiDiskCipher DE3;
+                    if(process)
+                    	DE3.decryptText();
+                    else
+                    	DE3.encryptText();
+
+                }
+    			break;
+
+		case 4: cout << "--------------------------------------------------------------------" << endl;
+			    cout << "Playfair Cipher\n" << endl;
+			    {
+                    PlayFairCipher pf("cool");
+                    if(process)
+                    	pf.decrypt();
+                    else
+                    	pf.encrypt();
+			    }
+			    break;
+
+		default:cout << "Something went wrong!" << endl;
+	}
+
+	// cout << "--------------------------------------------------------------------" << endl;
+
+ //    cout << "Morse Code\n" << endl;
+ //    MorseCode Morse;
+ //    Morse.convertToMorseCode();
+ //    Morse.convertFromMorseCode();
+ //    cout << "--------------------------------------------------------------------" << endl;
 
     // cout << " Press any key to exit..." << endl;
     // getchar();   //wait until any key is pressed
