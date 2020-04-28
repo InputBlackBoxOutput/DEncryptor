@@ -413,6 +413,17 @@ morse.push_back( make_pair('X',"1001") );
 morse.push_back( make_pair('Y',"1011") );
 morse.push_back( make_pair('Z',"1100") );
 
+morse.push_back(make_pair('0',"11111"));
+morse.push_back(make_pair('1',"01111"));
+morse.push_back(make_pair('2',"00111"));
+morse.push_back(make_pair('3',"00011"));
+morse.push_back(make_pair('4',"00001"));
+morse.push_back(make_pair('5',"00000"));
+morse.push_back(make_pair('6',"10000"));
+morse.push_back(make_pair('7',"11000"));
+morse.push_back(make_pair('8',"11100"));
+morse.push_back(make_pair('9',"11110"));
+
 // cout << morse[0].first << " " << morse[0].second << endl;   // A 01
 // cout << morse[7].first << " " << morse[7].second << endl;   // H 0000
 }
@@ -420,62 +431,67 @@ morse.push_back( make_pair('Z',"1100") );
 //////////////////////////////////////////////////////////////////////////////////////////
 void MorseCode::convertToMorseCode() {
 	cout << "Enter the message:";
-	getline(cin, msg);
-	//cout << "Entered message:" << msg <<endl;
+	getline(cin, morseIn);
+	//cout << "Entered message:" << morseIn <<endl;
 
-	code = "";
-	msg = toUpper(msg);
-	for(unsigned int i=0; i<msg.length(); i++) {
-		if(isalpha(msg.at(i)))
+	morseOut = "";
+	morseIn = toUpper(morseIn);
+	for(unsigned int i=0; i<morseIn.length(); i++) {
+		if(isalnum(morseIn.at(i)))
 			for(unsigned int j=0; j<morse.size(); j++) {
-				if(morse[j].first == msg.at(i)) {
-					code += morse[j].second;
-					if(i != msg.length() - 1) code += "-";
+				if(morse[j].first == morseIn.at(i)) {
+					morseOut += morse[j].second;
+					if(i != morseIn.length() - 1) morseOut += "-";
 					break;
 				}
 			}
 		else
-			code += msg.at(i);
+			morseOut += morseIn.at(i);
 
 	}
 
-	cout << "Morse code:" << code << endl;
+	cout << "Morse code:" << morseOut << endl;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 void MorseCode::convertFromMorseCode() {
-cout << "Enter the code: ";
-   	getline(cin, code);
-	//cout << "Entered message:" << code <<endl;
+	cout << "Enter the morse code: ";
+   	getline(cin, morseIn);
+	//cout << "Entered message:" << morseIn <<endl;
 
-   	msg = "";
+   	morseOut = "";
    	string temp;
    	unsigned int i {0};
    	bool found {false};
-   	code += "~";
+   	morseIn += "~";
 
-	while(i<code.length()) {
+	while(i<morseIn.length()) {
+		if((char)morseIn.at(i) !='1' && (char)morseIn.at(i) != '0') {
+			morseOut += morseIn.at(i);
+			i++;
+			continue;
+		}
+
 		temp = "";
-
-		while((char)code.at(i) =='1' || (char)code.at(i) == '0') {
-			temp += code.at(i);
+		while((char)morseIn.at(i) =='1' || (char)morseIn.at(i) == '0') {
+			temp += morseIn.at(i);
 			i++;
 		}
-		if(i<code.length()) i++;
+		if(i<morseIn.length()) i++;
 
 		found = false;
 		for(unsigned int j=0; j< morse.size(); j++) {
 			if(morse[j].second == temp) {
-				msg += morse[j].first;
+				morseOut += morse[j].first;
 				found = true;
 				break;
 			}
 		}
 
-		if(found == false) code+= " Error ";
+		if(found == false) morseIn += " Error ";
 	}
 
-	cout << "Message:" << msg << endl;
+	cout << "Message:" << morseOut << endl;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -552,13 +568,13 @@ int main() {
 		default:cout << "Something went wrong!" << endl;
 	}
 
-	// cout << "--------------------------------------------------------------------" << endl;
+	cout << "--------------------------------------------------------------------" << endl;
 
- //    cout << "Morse Code\n" << endl;
- //    MorseCode Morse;
- //    Morse.convertToMorseCode();
- //    Morse.convertFromMorseCode();
- //    cout << "--------------------------------------------------------------------" << endl;
+    cout << "Morse Code\n" << endl;
+    MorseCode Morse;
+    Morse.convertToMorseCode();
+    Morse.convertFromMorseCode();
+    cout << "--------------------------------------------------------------------" << endl;
 
     // cout << " Press any key to exit..." << endl;
     // getchar();   //wait until any key is pressed

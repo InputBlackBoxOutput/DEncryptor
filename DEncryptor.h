@@ -122,8 +122,8 @@ class MorseCode{
 
 	private:
 		vector< pair <char, string>> morse;
-		string msg;
-		string code;
+		string morseIn {};
+		string morseOut {};
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
