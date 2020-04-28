@@ -19,45 +19,52 @@ string toLower(string str) {
 
 //////////////////////////////////////////////////////////////////////////////////////////
 void CaesarCipher::encryptText() {
-    cout << "Enter the message you want to encrypt: ";
-   	getline(cin, msg);
-
-	//cout << "Entered message:" << msg << endl;
+	getMessageFromUser();
 
     code = "";
     msg = toUpper(msg);
 	for(unsigned int i=0; i< msg.length(); i++) {
-		if(isalnum(msg.at(i))) {
+		if(isalpha(msg.at(i))) {
 			if(msg.at(i) + shift > 90)
 				code += (char)(65 + ((msg.at(i) + shift) % ('A' + 26)));
 			else
 				code += (char)(msg.at(i) + shift);
 		}
+		else if(isdigit(msg.at(i))) {
+				if((msg.at(i) + shift) < 58)
+	                code += (int)(msg.at(i) + shift);
+				else
+					code += (int)(48 + (msg.at(i) + shift) % 58);
+		}
 		else
 			code += msg.at(i);
 	}
-	cout << "Encrypted message:" << code << endl;
+	printCode();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 void CaesarCipher::decryptText() {
-    cout << "Enter the message you want to decrypt: ";
-   	getline(cin, code);
-
-	//cout << "Entered message:" << code <<endl;
+	getCodeFromUser();
 
     msg = "";
     code = toUpper(code);
 	for(unsigned int i=0; i< code.length(); i++) {
-		if(isalnum(code.at(i)))
+		if(isalpha(code.at(i))) {
 			if(code.at(i) - shift < 65)
 				msg += (char)(90 - 65 + (code.at(i) - shift) + 1);
 			else
 				msg += code.at(i) - shift;
+		}
+		else if(isdigit(code.at(i))) {
+				if(((int)code.at(i) - shift) >= 48)
+	                msg += ((int)code.at(i) - shift);
+				else
+					msg += (58 - (48 - ((int)code.at(i) - shift)));
+		}
 		else
 			msg += code.at(i);
 	}
-	cout << "Decrypted message:" << msg << endl;
+	printMessage();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -89,9 +96,7 @@ void VigenereCipher::createVigeneresSquare() {
 
 //////////////////////////////////////////////////////////////////////////////////////////
 void VigenereCipher::encryptText() {
-    cout << "Enter the message you want to encrypt: ";
-	getline(cin, msg);
-	//cout << "Entered message:" << code <<endl;
+	getMessageFromUser();
 
 	unsigned int iter {0};
 	code = "";
@@ -111,15 +116,12 @@ void VigenereCipher::encryptText() {
 		else
 			code += msg.at(i);
 	}
-
-	cout << "Encrypted message:" << code << endl;
+	printCode();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 void VigenereCipher::decryptText() {
-    cout << "Enter the message you want to decrypt: ";
-   	getline(cin, code);
-	//cout << "Entered message:" << code <<endl;
+	getCodeFromUser();
 
    	unsigned int iter {0};
    	int loc;
@@ -144,16 +146,12 @@ void VigenereCipher::decryptText() {
 		else
 			msg += code.at(i);
 	}
-
-
-	cout << "Decrypted message:" << msg << endl;
+	printMessage();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 void AlbertiDiskCipher::encryptText() {
-    cout << "Enter the message you want to encrypt: ";
-	getline(cin, msg);
-	//cout << "Entered message:" << msg <<endl;
+	getMessageFromUser();
 
 	srand(time(nullptr));
 
@@ -172,15 +170,12 @@ void AlbertiDiskCipher::encryptText() {
 			code += stationary.at(shift);
 		}
 	}
-
-	cout << "Encrypted message:" << code << endl;
+	printCode();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 void AlbertiDiskCipher::decryptText() {
-    cout << "Enter the message you want to decrypt: ";
-   	getline(cin, code);
-	//cout << "Entered message:" << code <<endl;
+	getCodeFromUser();
 
    	msg = "";
    	shift = 0;
@@ -205,8 +200,7 @@ void AlbertiDiskCipher::decryptText() {
 				msg += code.at(i);
 		}
 	}
-
-	cout << "Decrypted message:" << msg << endl;
+	printMessage();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////

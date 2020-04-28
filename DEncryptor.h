@@ -9,7 +9,33 @@
 using namespace std;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-class CaesarCipher{
+class UserInterface {
+public:
+	void getMessageFromUser() {
+		cout << "Enter the message you want to encrypt: ";
+   		getline(cin, msg);
+		//cout << "Entered message:" << msg << endl;
+	}
+	void printCode() {
+		cout << "Encrypted message:" << code << endl;
+	}
+
+
+	void getCodeFromUser() {
+		cout << "Enter the message you want to decrypt: ";
+   		getline(cin, code);
+		//cout << "Entered message:" << code <<endl;
+	}
+	void printMessage() {
+		cout << "Decrypted message:" << msg << endl;
+	}
+
+	string msg;
+	string code;
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+class CaesarCipher: public UserInterface{
 
 	public:
 		CaesarCipher(int sft) {
@@ -21,12 +47,11 @@ class CaesarCipher{
 
 	private:
 		int shift {1};
-		string msg;
-		string code;
+
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-class VigenereCipher{
+class VigenereCipher: public UserInterface{
 
 	public:
 		VigenereCipher(string keywrd) {
@@ -40,14 +65,12 @@ class VigenereCipher{
 
 	private:
 		string keyword {"DUOSVAVVM"}; //Shugborough inscription
-		string msg;
-		string code;
 		char vigenereSquare[26][26] {};
 		string index {"ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-class AlbertiDiskCipher{
+class AlbertiDiskCipher: public UserInterface{
 
 	public:
 		void encryptText();
@@ -57,8 +80,7 @@ class AlbertiDiskCipher{
 		string stationary {"ABHCDJEWFGILMYKNOPQRUSTVXZ"};
 		string rotating   {"qxsewfgknboaphcdjtvilmyzru"};
 		int shift {0};
-		string msg;
-		string code;
+
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
