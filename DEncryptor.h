@@ -9,33 +9,61 @@
 using namespace std;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
+class MorseCode{
+
+	public:
+		MorseCode() {
+			generateMorseCodeMap();
+		}
+
+	    void generateMorseCodeMap();
+		string convertToMorseCode(string);
+		string convertFromMorseCode(string);
+
+	private:
+		vector< pair <char, string>> morse;
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+MorseCode M;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 class UserInterface {
 public:
-	void getMessageFromUser() {
+	string getMessageFromUser() {
+		string msg;
 		cout << "Enter the message you want to encrypt: ";
    		getline(cin, msg);
 		//cout << "Entered message:" << msg << endl;
+		return msg;
 	}
-	void printCode() {
+
+	void printCode(string code) {
+		code = M.convertToMorseCode(code);
 		cout << "Encrypted message:" << code << endl;
 	}
 
 
-	void getCodeFromUser() {
+	string getCodeFromUser() {
+		string code;
 		cout << "Enter the message you want to decrypt: ";
    		getline(cin, code);
 		//cout << "Entered message:" << code <<endl;
+		code = M.convertFromMorseCode(code);
+		return code;
 	}
-	void printMessage() {
+
+	void printMessage(string msg) {
 		cout << "Decrypted message:" << msg << endl;
 	}
 
-	string msg;
-	string code;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-class CaesarCipher: public UserInterface{
+UserInterface UI;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+class CaesarCipher{
 
 	public:
 		CaesarCipher(int sft) {
@@ -51,7 +79,7 @@ class CaesarCipher: public UserInterface{
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-class VigenereCipher: public UserInterface{
+class VigenereCipher{
 
 	public:
 		VigenereCipher(string keywrd) {
@@ -70,7 +98,7 @@ class VigenereCipher: public UserInterface{
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-class AlbertiDiskCipher: public UserInterface{
+class AlbertiDiskCipher{
 
 	public:
 		void encryptText();
@@ -106,24 +134,6 @@ private:
 	bool toEncrypt {true};
 	string msg {};
 	string inpt {};
-};
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-class MorseCode{
-
-	public:
-		MorseCode() {
-			generateMorseCodeMap();
-		}
-
-	    void generateMorseCodeMap();
-		void convertToMorseCode();
-		void convertFromMorseCode();
-
-	private:
-		vector< pair <char, string>> morse;
-		string morseIn {};
-		string morseOut {};
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -19,9 +19,9 @@ string toLower(string str) {
 
 //////////////////////////////////////////////////////////////////////////////////////////
 void CaesarCipher::encryptText() {
-	getMessageFromUser();
+	string msg = UI.getMessageFromUser();
+    string code {};
 
-    code = "";
     msg = toUpper(msg);
 	for(unsigned int i=0; i< msg.length(); i++) {
 		if(isalpha(msg.at(i))) {
@@ -39,14 +39,14 @@ void CaesarCipher::encryptText() {
 		else
 			code += msg.at(i);
 	}
-	printCode();
+	UI.printCode(code);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 void CaesarCipher::decryptText() {
-	getCodeFromUser();
+	string code = UI.getCodeFromUser();
+    string msg {};
 
-    msg = "";
     code = toUpper(code);
 	for(unsigned int i=0; i< code.length(); i++) {
 		if(isalpha(code.at(i))) {
@@ -64,7 +64,7 @@ void CaesarCipher::decryptText() {
 		else
 			msg += code.at(i);
 	}
-	printMessage();
+	UI.printMessage(msg);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -96,10 +96,10 @@ void VigenereCipher::createVigeneresSquare() {
 
 //////////////////////////////////////////////////////////////////////////////////////////
 void VigenereCipher::encryptText() {
-	getMessageFromUser();
+	string msg = UI.getMessageFromUser();
+	string code {};
 
 	unsigned int iter {0};
-	code = "";
 	msg = toUpper(msg);
 	keyword = toUpper(keyword);
 
@@ -116,16 +116,16 @@ void VigenereCipher::encryptText() {
 		else
 			code += msg.at(i);
 	}
-	printCode();
+	UI.printCode(code);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 void VigenereCipher::decryptText() {
-	getCodeFromUser();
+	string code = UI.getCodeFromUser();
+	string msg {};
 
    	unsigned int iter {0};
    	int loc;
-	msg = "";
 	code = toUpper(code);
 	keyword = toUpper(keyword);
 
@@ -146,16 +146,15 @@ void VigenereCipher::decryptText() {
 		else
 			msg += code.at(i);
 	}
-	printMessage();
+	UI.printMessage(msg);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 void AlbertiDiskCipher::encryptText() {
-	getMessageFromUser();
+	string msg = UI.getMessageFromUser();
+	string code {};
 
 	srand(time(nullptr));
-
-	code = "";
 	msg = toUpper(msg);
 	for(unsigned int i=0; i<msg.length(); i++) {
 		if(isalpha(msg.at(i)))
@@ -170,14 +169,14 @@ void AlbertiDiskCipher::encryptText() {
 			code += stationary.at(shift);
 		}
 	}
-	printCode();
+	UI.printCode(code);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 void AlbertiDiskCipher::decryptText() {
-	getCodeFromUser();
+	string code = UI.getCodeFromUser();
+	string msg {};
 
-   	msg = "";
    	shift = 0;
 	for(unsigned int i=0; i<code.length(); i++) {
 		if(isalpha(code.at(i)) && isupper(code.at(i))){
@@ -200,55 +199,48 @@ void AlbertiDiskCipher::decryptText() {
 				msg += code.at(i);
 		}
 	}
-	printMessage();
+	UI.printMessage(msg);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
 string PlayFairCipher::encrypt() {
-  cout << "Enter the message you want to encrypt: ";
-  getline(cin, inpt);
-  //cout << "Entered message:" << inpt <<endl;
+	string inpt = UI.getMessageFromUser();
+	string code {};
 
-    toEncrypt = true;
+	toEncrypt = true;
+	char last_char {'~'};
+	inpt = toUpper(inpt);
 
-    string code {};
-    char last_char {'~'};
-    inpt = toUpper(inpt);
+	if(inpt.length()%2 != 0){
+	    last_char = inpt.at(inpt.length()-1);
+	    inpt.erase(inpt.length()-1);
+	}
 
-    if(inpt.length()%2 != 0){
-        last_char = inpt.at(inpt.length()-1);
-        inpt.erase(inpt.length()-1);
-    }
-  size_t i {0};
-  while(i<inpt.length()-1){
-    if(isalpha(inpt.at(i)) && isalpha(inpt.at(i+1))) {
-      //cout << inpt.substr(i,2) << endl;
-      encryptDecryptPieces(inpt.substr(i,2));
-      code += msg;
-    }
-    else {
-      //cout << inpt.substr(i,2) << endl;
-      code += inpt.substr(i,2);
-    }
+	size_t i {0};
+	while(i<inpt.length()-1){
+	    if(isalpha(inpt.at(i)) && isalpha(inpt.at(i+1))) {
+	      encryptDecryptPieces(inpt.substr(i,2));
+	      code += msg;
+	    }
+	    else {
+	      code += inpt.substr(i,2);
+	    }
+	    i += 2;
+	  }
 
-    i += 2;
-  }
+	if(last_char != '~') code += last_char;
 
-  if(last_char != '~') code += last_char;
-
-  cout << "Encrypted message:" << code << endl;
-  return code;
+	UI.printCode(code);
+	return code;
 }
 
 string PlayFairCipher::decrypt() {
-	cout << "Enter the message you want to decrypt: ";
-   	getline(cin, inpt);
-	//cout << "Entered message:" << inpt <<endl;
+	string inpt = UI.getCodeFromUser();
+	string mssge {};
 
     toEncrypt = false;
 
-    string mssge {};
     char last_char {'~'};
     inpt = toUpper(inpt);
 
@@ -256,22 +248,21 @@ string PlayFairCipher::decrypt() {
         last_char = inpt.at(inpt.length()-1);
         inpt.erase(inpt.length()-1);
     }
-  size_t i {0};
-  while(i<inpt.length()-1){
-    if(isalpha(inpt.at(i)) && isalpha(inpt.at(i+1))) {
-    	encryptDecryptPieces(inpt.substr(i,2));
-    	mssge += msg;
-    }
-    else {
-    	mssge += inpt.substr(i,2);
-    }
-
-    i += 2;
-  }
+	size_t i {0};
+	while(i<inpt.length()-1){
+		if(isalpha(inpt.at(i)) && isalpha(inpt.at(i+1))) {
+			encryptDecryptPieces(inpt.substr(i,2));
+			mssge += msg;
+		}
+		else {
+			mssge += inpt.substr(i,2);
+		}
+		i += 2;
+	}
 
   if(last_char != '~') mssge += last_char;
 
-  cout << "Decrypted message:" << mssge << endl;
+  UI.printMessage(mssge);
   return mssge;
 }
 
@@ -429,12 +420,9 @@ morse.push_back(make_pair('9',"11110"));
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-void MorseCode::convertToMorseCode() {
-	cout << "Enter the message:";
-	getline(cin, morseIn);
-	//cout << "Entered message:" << morseIn <<endl;
+string MorseCode::convertToMorseCode(string morseIn) {
+	string morseOut {};
 
-	morseOut = "";
 	morseIn = toUpper(morseIn);
 	for(unsigned int i=0; i<morseIn.length(); i++) {
 		if(isalnum(morseIn.at(i)))
@@ -449,18 +437,14 @@ void MorseCode::convertToMorseCode() {
 			morseOut += morseIn.at(i);
 
 	}
-
-	cout << "Morse code:" << morseOut << endl;
+	return morseOut;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-void MorseCode::convertFromMorseCode() {
-	cout << "Enter the morse code: ";
-   	getline(cin, morseIn);
-	//cout << "Entered message:" << morseIn <<endl;
+string MorseCode::convertFromMorseCode(string morseIn) {
+   	string morseOut {};
+   	string temp {};
 
-   	morseOut = "";
-   	string temp;
    	unsigned int i {0};
    	bool found {false};
    	morseIn += "~";
@@ -490,8 +474,7 @@ void MorseCode::convertFromMorseCode() {
 
 		if(found == false) morseIn += " Error ";
 	}
-
-	cout << "Message:" << morseOut << endl;
+	return morseOut;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -570,11 +553,11 @@ int main() {
 
 	cout << "--------------------------------------------------------------------" << endl;
 
-    cout << "Morse Code\n" << endl;
-    MorseCode Morse;
-    Morse.convertToMorseCode();
-    Morse.convertFromMorseCode();
-    cout << "--------------------------------------------------------------------" << endl;
+    // cout << "Morse Code\n" << endl;
+    // MorseCode Morse;
+    // Morse.convertToMorseCode();
+    // Morse.convertFromMorseCode();
+    // cout << "--------------------------------------------------------------------" << endl;
 
     // cout << " Press any key to exit..." << endl;
     // getchar();   //wait until any key is pressed
