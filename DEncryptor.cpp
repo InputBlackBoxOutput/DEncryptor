@@ -474,7 +474,7 @@ string MorseCode::convertFromMorseCode(string morseIn) {
 
 		if(found == false) morseIn += " Error ";
 	}
-	return morseOut;
+	return morseOut;			
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
