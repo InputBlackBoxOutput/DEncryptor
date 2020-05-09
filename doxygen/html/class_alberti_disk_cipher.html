@@ -104,6 +104,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5809f25dbae8704d29db07a03ad38c37"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alberti_disk_cipher.html#a5809f25dbae8704d29db07a03ad38c37">decryptText</a> (string code=&quot;&quot;, bool isCLI=true)</td></tr>
 <tr class="memdesc:a5809f25dbae8704d29db07a03ad38c37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts message using Alberti's disk cipher.  <a href="class_alberti_disk_cipher.html#a5809f25dbae8704d29db07a03ad38c37">More...</a><br /></td></tr>
 <tr class="separator:a5809f25dbae8704d29db07a03ad38c37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2f122728580bd187be190d180f4a40d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alberti_disk_cipher.html#ac2f122728580bd187be190d180f4a40d">setStatDisk</a> (string stat)</td></tr>
+<tr class="memdesc:ac2f122728580bd187be190d180f4a40d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the stationary disk used by Alberti's disk cipher.  <a href="class_alberti_disk_cipher.html#ac2f122728580bd187be190d180f4a40d">More...</a><br /></td></tr>
+<tr class="separator:ac2f122728580bd187be190d180f4a40d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa15c5ab2afd0e01ad4b4f14f1bee169"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alberti_disk_cipher.html#afa15c5ab2afd0e01ad4b4f14f1bee169">setRotDisk</a> (string rot)</td></tr>
+<tr class="memdesc:afa15c5ab2afd0e01ad4b4f14f1bee169"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the rotating disk used by Alberti's disk cipher.  <a href="class_alberti_disk_cipher.html#afa15c5ab2afd0e01ad4b4f14f1bee169">More...</a><br /></td></tr>
+<tr class="separator:afa15c5ab2afd0e01ad4b4f14f1bee169"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class provides all functionalities related with Alberti's disk cipher. </p>
@@ -182,6 +188,74 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="afa15c5ab2afd0e01ad4b4f14f1bee169"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa15c5ab2afd0e01ad4b4f14f1bee169">&#9670;&nbsp;</a></span>setRotDisk()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AlbertiDiskCipher::setRotDisk </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>rot</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the rotating disk used by Alberti's disk cipher. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rot</td><td>This string is used as the rotating disk </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac2f122728580bd187be190d180f4a40d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2f122728580bd187be190d180f4a40d">&#9670;&nbsp;</a></span>setStatDisk()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AlbertiDiskCipher::setStatDisk </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>stat</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the stationary disk used by Alberti's disk cipher. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stat</td><td>This string is used as the stationary disk </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_d_encryptor_8h_source.html">DEncryptor.h</a></li>
 <li>DEncryptor.cpp</li>
@@ -192,7 +266,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_alberti_disk_cipher.html">AlbertiDiskCipher</a></li>
-    <li class="footer">Generated on Sat May 2 2020 10:03:55 for DEncryptor by
+    <li class="footer">Generated on Sat May 9 2020 12:18:26 for DEncryptor by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.18 </li>
   </ul>

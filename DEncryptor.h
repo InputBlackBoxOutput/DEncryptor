@@ -220,7 +220,7 @@ class AlbertiDiskCipher{
 		string decryptText(string code="", bool isCLI=true);
 
 		/**
-     	 Set the stationary disk used by Alberti'ssDisk cipher
+     	 Set the stationary disk used by Alberti's disk cipher
      	 @param stat This string is used as the stationary disk
     	*/
 		void setStatDisk(string stat) {
@@ -231,7 +231,7 @@ class AlbertiDiskCipher{
 		}
 
 		/**
-     	 Set the rotating disk used by Alberti'Disk cipher
+     	 Set the rotating disk used by Alberti's disk cipher
      	 @param rot This string is used as the rotating disk
     	*/
 		void setRotDisk(string rot) {
@@ -283,7 +283,7 @@ public:
     void setKeyword(string keyword) {
     	createEncoder(keyword, true);
     }
-    
+
 private:
 	void encryptDecryptPieces(string message);
     void createEncoder( string k, bool m );

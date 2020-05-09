@@ -105,11 +105,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a7b98654eb1f348647375d358e2d2b231"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates Vigenere's square.  <a href="class_vigenere_cipher.html#a7b98654eb1f348647375d358e2d2b231">More...</a><br /></td></tr>
 <tr class="separator:a7b98654eb1f348647375d358e2d2b231"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bd76869cbbf05dc8988d5cec84b09b0"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vigenere_cipher.html#a9bd76869cbbf05dc8988d5cec84b09b0">encryptText</a> (string msg=&quot;&quot;, bool isCLI=true)</td></tr>
-<tr class="memdesc:a9bd76869cbbf05dc8988d5cec84b09b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts message using Vigeneres cipher.  <a href="class_vigenere_cipher.html#a9bd76869cbbf05dc8988d5cec84b09b0">More...</a><br /></td></tr>
+<tr class="memdesc:a9bd76869cbbf05dc8988d5cec84b09b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts message using Vigenere's cipher.  <a href="class_vigenere_cipher.html#a9bd76869cbbf05dc8988d5cec84b09b0">More...</a><br /></td></tr>
 <tr class="separator:a9bd76869cbbf05dc8988d5cec84b09b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22bd1382641921a25743e2a4f32eed96"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vigenere_cipher.html#a22bd1382641921a25743e2a4f32eed96">decryptText</a> (string code=&quot;&quot;, bool isCLI=true)</td></tr>
-<tr class="memdesc:a22bd1382641921a25743e2a4f32eed96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts message using Vigeneres cipher.  <a href="class_vigenere_cipher.html#a22bd1382641921a25743e2a4f32eed96">More...</a><br /></td></tr>
+<tr class="memdesc:a22bd1382641921a25743e2a4f32eed96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts message using Vigenere's cipher.  <a href="class_vigenere_cipher.html#a22bd1382641921a25743e2a4f32eed96">More...</a><br /></td></tr>
 <tr class="separator:a22bd1382641921a25743e2a4f32eed96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0460b33c49dec8a841e6bb50208eadc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vigenere_cipher.html#aa0460b33c49dec8a841e6bb50208eadc">setKeyword</a> (string kywrd)</td></tr>
+<tr class="memdesc:aa0460b33c49dec8a841e6bb50208eadc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the keyword used by Vigenere's cipher.  <a href="class_vigenere_cipher.html#aa0460b33c49dec8a841e6bb50208eadc">More...</a><br /></td></tr>
+<tr class="separator:aa0460b33c49dec8a841e6bb50208eadc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class provides all functionalities related with Vigenere cipher. </p>
@@ -190,7 +193,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Decrypts message using Vigeneres cipher. </p>
+<p>Decrypts message using Vigenere's cipher. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">code</td><td>Encrypted message </td></tr>
@@ -227,11 +230,45 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Encrypts message using Vigeneres cipher. </p>
+<p>Encrypts message using Vigenere's cipher. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td>Message </td></tr>
     <tr><td class="paramname">isCLI</td><td>Prompt for message and print encrypted message on CLI </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa0460b33c49dec8a841e6bb50208eadc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0460b33c49dec8a841e6bb50208eadc">&#9670;&nbsp;</a></span>setKeyword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VigenereCipher::setKeyword </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>kywrd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the keyword used by Vigenere's cipher. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kywrd</td><td>This keyword used to build vigenere's square </td></tr>
   </table>
   </dd>
 </dl>
@@ -248,7 +285,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_vigenere_cipher.html">VigenereCipher</a></li>
-    <li class="footer">Generated on Sat May 2 2020 10:03:55 for DEncryptor by
+    <li class="footer">Generated on Sat May 9 2020 12:18:26 for DEncryptor by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.18 </li>
   </ul>
