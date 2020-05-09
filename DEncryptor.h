@@ -25,7 +25,7 @@ class MorseCode{
 
         /**
          Generates a lookup table for roman alphabets and digits
-         @note This function is called during by constructor
+         @note This function is called by constructor
          @attention Do not call this function
 	    */
 	    void generateMorseCodeMap();
@@ -60,7 +60,7 @@ MorseCode M;
 class UserInterface {
 public:
     /**
-     Prompts the user for message 
+     Prompts the user for message
      @returns Message
     */
 	string getMessageFromUser() {
@@ -120,8 +120,27 @@ class CaesarCipher{
 			shift = sft;
 		}
 
-		void encryptText();
-		void decryptText();
+		/**
+     	 Encrypts message using Caesar cipher
+     	 @param msg Message
+     	 @param isCLI Prompt for message and print encrypted message on CLI
+    	*/
+		string encryptText(string msg="", bool isCLI=true);
+
+		/**
+     	 Decrypts message using Caesar cipher
+     	 @param code Encrypted message
+     	 @param isCLI Prompt for encrypted message and print decrypted message on CLI
+    	*/
+		string decryptText(string code="", bool isCLI=true);
+
+		/**
+     	 Set the shift used by Caesar cipher
+     	 @param sft Shift each character by this value
+    	*/
+		void setShift(int sft) {
+			shift = sft;
+		}
 
 	private:
 		int shift {1};
@@ -143,9 +162,35 @@ class VigenereCipher{
 			createVigeneresSquare();
 		}
 
+		/**
+         Generates Vigenere's square
+         @note This function is called by constructor
+         @attention Do not call this function
+	    */
 		void createVigeneresSquare();
-		void encryptText();
-		void decryptText();
+
+		/**
+     	 Encrypts message using Vigenere's cipher
+     	 @param msg Message
+     	 @param isCLI Prompt for message and print encrypted message on CLI
+    	*/
+		string encryptText(string msg="", bool isCLI=true);
+
+		/**
+     	 Decrypts message using Vigenere's cipher
+     	 @param code Encrypted message
+     	 @param isCLI Prompt for encrypted message and print decrypted message on CLI
+    	*/
+		string decryptText(string code="", bool isCLI=true);
+
+		/**
+     	 Set the keyword used by Vigenere's cipher
+     	 @param kywrd This keyword used to build vigenere's square
+    	*/
+		void setKeyword(string kywrd) {
+			keyword = kywrd;
+			createVigeneresSquare();
+		}
 
 	private:
 		string keyword {"DUOSVAVVM"};   //Shugborough inscription
@@ -160,8 +205,41 @@ class VigenereCipher{
 class AlbertiDiskCipher{
 
 	public:
-		void encryptText();
-		void decryptText();
+		/**
+     	 Encrypts message using Alberti's disk cipher
+     	 @param msg Message
+     	 @param isCLI Prompt for message and print encrypted message on CLI
+    	*/
+		string encryptText(string msg="", bool isCLI=true);
+
+		/**
+     	 Decrypts message using Alberti's disk cipher
+     	 @param code Encrypted message
+     	 @param isCLI Prompt for encrypted message and print decrypted message on CLI
+    	*/
+		string decryptText(string code="", bool isCLI=true);
+
+		/**
+     	 Set the stationary disk used by Alberti'ssDisk cipher
+     	 @param stat This string is used as the stationary disk
+    	*/
+		void setStatDisk(string stat) {
+			if(stat.length() == 26)
+				stationary = stat;
+			else
+				cout << "Invalid Size: Should have exactly 26 characters" << endl;
+		}
+
+		/**
+     	 Set the rotating disk used by Alberti'Disk cipher
+     	 @param rot This string is used as the rotating disk
+    	*/
+		void setRotDisk(string rot) {
+			if(rot.length() == 26)
+				rotating = rot;
+			else
+				cout << "Invalid Size: Should have exactly 26 characters" << endl;
+		}
 
 	private:
 		string stationary {"ABHCDJEWFGILMYKNOPQRUSTVXZ"};
@@ -183,12 +261,31 @@ public:
         createEncoder( key, true );
     }
 
-    string encrypt();
-    string decrypt();
-	void encryptDecryptPieces(string message);
+    /**
+     Encrypts message using Playfair cipher
+     @param inpt Message
+     @param isCLI Prompt for message and print encrypted message on CLI
+    */
+    string encrypt(string inpt="", bool isCLI=true);
+
+    /**
+     Decrypts message using Playfair cipher
+     @param inpt Encrypted message
+     @param isCLI Prompt for encrypted message and print decrypted message on CLI
+    */
+    string decrypt(string inpt="", bool isCLI=true);
 
 
+    /**
+     Set the keyword used by Playfair cipher
+	 @param keyword This string is used as keyword while generating grid
+    */
+    void setKeyword(string keyword) {
+    	createEncoder(keyword, true);
+    }
+    
 private:
+	void encryptDecryptPieces(string message);
     void createEncoder( string k, bool m );
     void displayGrid();
 	char getChar( int a, int b );
@@ -198,7 +295,6 @@ private:
 	char n[5][5];
 	bool toEncrypt {true};
 	string msg {};
-	string inpt {};
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////

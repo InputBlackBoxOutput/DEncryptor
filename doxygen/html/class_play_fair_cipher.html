@@ -101,15 +101,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa56a3d3fb28ff7a424fb7f5c61c4223b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_play_fair_cipher.html#aa56a3d3fb28ff7a424fb7f5c61c4223b">PlayFairCipher</a> (string key)</td></tr>
 <tr class="memdesc:aa56a3d3fb28ff7a424fb7f5c61c4223b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for class <a class="el" href="class_play_fair_cipher.html" title="This class provides all functionalities related with Playfair cipher.">PlayFairCipher</a>.  <a href="class_play_fair_cipher.html#aa56a3d3fb28ff7a424fb7f5c61c4223b">More...</a><br /></td></tr>
 <tr class="separator:aa56a3d3fb28ff7a424fb7f5c61c4223b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39c95b8d0f268e6e75bac6d865abdc1c"><td class="memItemLeft" align="right" valign="top"><a id="a39c95b8d0f268e6e75bac6d865abdc1c"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>encrypt</b> ()</td></tr>
-<tr class="separator:a39c95b8d0f268e6e75bac6d865abdc1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affba5df39b1a2cdbd4844f4a8e9542aa"><td class="memItemLeft" align="right" valign="top"><a id="affba5df39b1a2cdbd4844f4a8e9542aa"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>decrypt</b> ()</td></tr>
-<tr class="separator:affba5df39b1a2cdbd4844f4a8e9542aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae28df94c882f0f55868d1aad16bfedc0"><td class="memItemLeft" align="right" valign="top"><a id="ae28df94c882f0f55868d1aad16bfedc0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>encryptDecryptPieces</b> (string message)</td></tr>
-<tr class="separator:ae28df94c882f0f55868d1aad16bfedc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8ee6e4da29aa28a34596fc9c7f2275a"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_play_fair_cipher.html#ac8ee6e4da29aa28a34596fc9c7f2275a">encrypt</a> (string inpt=&quot;&quot;, bool isCLI=true)</td></tr>
+<tr class="memdesc:ac8ee6e4da29aa28a34596fc9c7f2275a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts message using Playfair cipher.  <a href="class_play_fair_cipher.html#ac8ee6e4da29aa28a34596fc9c7f2275a">More...</a><br /></td></tr>
+<tr class="separator:ac8ee6e4da29aa28a34596fc9c7f2275a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abed8a4b5d9f464aafa39f362d61c918d"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_play_fair_cipher.html#abed8a4b5d9f464aafa39f362d61c918d">decrypt</a> (string inpt=&quot;&quot;, bool isCLI=true)</td></tr>
+<tr class="memdesc:abed8a4b5d9f464aafa39f362d61c918d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts message using Playfair cipher.  <a href="class_play_fair_cipher.html#abed8a4b5d9f464aafa39f362d61c918d">More...</a><br /></td></tr>
+<tr class="separator:abed8a4b5d9f464aafa39f362d61c918d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class provides all functionalities related with Playfair cipher. </p>
@@ -142,6 +139,81 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>encryptDecryptPieces<
 
 </div>
 </div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="abed8a4b5d9f464aafa39f362d61c918d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abed8a4b5d9f464aafa39f362d61c918d">&#9670;&nbsp;</a></span>decrypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string PlayFairCipher::decrypt </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>inpt</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isCLI</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Decrypts message using Playfair cipher. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inpt</td><td>Encrypted message </td></tr>
+    <tr><td class="paramname">isCLI</td><td>Prompt for encrypted message and print decrypted message on CLI </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac8ee6e4da29aa28a34596fc9c7f2275a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8ee6e4da29aa28a34596fc9c7f2275a">&#9670;&nbsp;</a></span>encrypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string PlayFairCipher::encrypt </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>inpt</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isCLI</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Encrypts message using Playfair cipher. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inpt</td><td>Message </td></tr>
+    <tr><td class="paramname">isCLI</td><td>Prompt for message and print encrypted message on CLI </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_d_encryptor_8h_source.html">DEncryptor.h</a></li>
 <li>DEncryptor.cpp</li>
@@ -152,7 +224,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>encryptDecryptPieces<
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_play_fair_cipher.html">PlayFairCipher</a></li>
-    <li class="footer">Generated on Fri May 1 2020 21:38:14 for DEncryptor by
+    <li class="footer">Generated on Sat May 2 2020 10:03:55 for DEncryptor by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.18 </li>
   </ul>

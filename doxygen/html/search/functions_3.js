@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['playfaircipher_26',['PlayFairCipher',['../class_play_fair_cipher.html#aa56a3d3fb28ff7a424fb7f5c61c4223b',1,'PlayFairCipher']]],
-  ['printcode_27',['printCode',['../class_user_interface.html#ab4514a2703d683b1d852a3293d968fc4',1,'UserInterface']]],
-  ['printmessage_28',['printMessage',['../class_user_interface.html#a089e3a945a910121084463d0245ecfc1',1,'UserInterface']]]
+  ['generatemorsecodemap_32',['generateMorseCodeMap',['../class_morse_code.html#a7049de52f3cb6ea7c52b93bf81a7898a',1,'MorseCode']]],
+  ['getcodefromuser_33',['getCodeFromUser',['../class_user_interface.html#af70e29a731fa6fbca3879544b49f8663',1,'UserInterface']]],
+  ['getmessagefromuser_34',['getMessageFromUser',['../class_user_interface.html#a3a46538d70bf60667ad439201cbfd032',1,'UserInterface']]]
 ];

@@ -98,16 +98,91 @@ $(document).ready(function(){initNavTree('class_alberti_disk_cipher.html',''); i
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a39289540fcd23953cc77463c3a6d45d9"><td class="memItemLeft" align="right" valign="top"><a id="a39289540fcd23953cc77463c3a6d45d9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>encryptText</b> ()</td></tr>
-<tr class="separator:a39289540fcd23953cc77463c3a6d45d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ff423f895f2256aaff8d5a34ca67a19"><td class="memItemLeft" align="right" valign="top"><a id="a0ff423f895f2256aaff8d5a34ca67a19"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>decryptText</b> ()</td></tr>
-<tr class="separator:a0ff423f895f2256aaff8d5a34ca67a19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7e83f95be5b3fb2b12f7c6d33f26583"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alberti_disk_cipher.html#aa7e83f95be5b3fb2b12f7c6d33f26583">encryptText</a> (string msg=&quot;&quot;, bool isCLI=true)</td></tr>
+<tr class="memdesc:aa7e83f95be5b3fb2b12f7c6d33f26583"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts message using Alberti's disk cipher.  <a href="class_alberti_disk_cipher.html#aa7e83f95be5b3fb2b12f7c6d33f26583">More...</a><br /></td></tr>
+<tr class="separator:aa7e83f95be5b3fb2b12f7c6d33f26583"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5809f25dbae8704d29db07a03ad38c37"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alberti_disk_cipher.html#a5809f25dbae8704d29db07a03ad38c37">decryptText</a> (string code=&quot;&quot;, bool isCLI=true)</td></tr>
+<tr class="memdesc:a5809f25dbae8704d29db07a03ad38c37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts message using Alberti's disk cipher.  <a href="class_alberti_disk_cipher.html#a5809f25dbae8704d29db07a03ad38c37">More...</a><br /></td></tr>
+<tr class="separator:a5809f25dbae8704d29db07a03ad38c37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class provides all functionalities related with Alberti's disk cipher. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5809f25dbae8704d29db07a03ad38c37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5809f25dbae8704d29db07a03ad38c37">&#9670;&nbsp;</a></span>decryptText()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string AlbertiDiskCipher::decryptText </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>code</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isCLI</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Decrypts message using Alberti's disk cipher. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">code</td><td>Encrypted message </td></tr>
+    <tr><td class="paramname">isCLI</td><td>Prompt for encrypted message and print decrypted message on CLI </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa7e83f95be5b3fb2b12f7c6d33f26583"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7e83f95be5b3fb2b12f7c6d33f26583">&#9670;&nbsp;</a></span>encryptText()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string AlbertiDiskCipher::encryptText </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>msg</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isCLI</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Encrypts message using Alberti's disk cipher. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>Message </td></tr>
+    <tr><td class="paramname">isCLI</td><td>Prompt for message and print encrypted message on CLI </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_d_encryptor_8h_source.html">DEncryptor.h</a></li>
 <li>DEncryptor.cpp</li>
 </ul>
@@ -117,7 +192,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>decryptText</b> ()</t
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_alberti_disk_cipher.html">AlbertiDiskCipher</a></li>
-    <li class="footer">Generated on Fri May 1 2020 21:38:14 for DEncryptor by
+    <li class="footer">Generated on Sat May 2 2020 10:03:55 for DEncryptor by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.18 </li>
   </ul>

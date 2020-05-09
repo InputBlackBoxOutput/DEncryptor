@@ -2,27 +2,26 @@
 #include "DEncryptor.h"
 //////////////////////////////////////////////////////////////////////////////////////////
 // Helper functions
-string toUpper(string str) {
+void toUpper(string &str) {
 	for(unsigned int i=0; i<str.length(); i++) {
 			str.at(i) = toupper(str.at(i));
 	}
-	return str;
 }
 
-string toLower(string str) {
+void toLower(string &str) {
 	for(unsigned int i=0; i<str.length(); i++) {
 			str.at(i) = tolower(str.at(i));
 	}
-	return str;
 }
 
 
 //////////////////////////////////////////////////////////////////////////////////////////
-void CaesarCipher::encryptText() {
-	string msg = UI.getMessageFromUser();
+string CaesarCipher::encryptText(string msg, bool isCLI) {
+	if(isCLI)
+		msg = UI.getMessageFromUser();
     string code {};
 
-    msg = toUpper(msg);
+    toUpper(msg);
 	for(unsigned int i=0; i< msg.length(); i++) {
 		if(isalpha(msg.at(i))) {
 			if(msg.at(i) + shift > 90)
@@ -39,15 +38,18 @@ void CaesarCipher::encryptText() {
 		else
 			code += msg.at(i);
 	}
-	UI.printCode(code);
+	if(isCLI)
+		UI.printCode(code);
+    return code;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-void CaesarCipher::decryptText() {
-	string code = UI.getCodeFromUser();
+string CaesarCipher::decryptText(string code, bool isCLI) {
+	if(isCLI)
+		code = UI.getCodeFromUser();
     string msg {};
 
-    code = toUpper(code);
+   toUpper(code);
 	for(unsigned int i=0; i< code.length(); i++) {
 		if(isalpha(code.at(i))) {
 			if(code.at(i) - shift < 65)
@@ -64,7 +66,9 @@ void CaesarCipher::decryptText() {
 		else
 			msg += code.at(i);
 	}
-	UI.printMessage(msg);
+	if(isCLI)
+		UI.printMessage(msg);
+    return msg;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -85,7 +89,7 @@ void VigenereCipher::createVigeneresSquare() {
         }
 	}
 
-	// Print out Vigeneres Sqaure
+//  Print out Vigeneres Sqaure
 //	for(int i=0; i<26; i++) {
 //		for(int j=0; j<26; j++) {
 //			cout << vigenereSquare[i][j] << " ";
@@ -95,13 +99,14 @@ void VigenereCipher::createVigeneresSquare() {
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-void VigenereCipher::encryptText() {
-	string msg = UI.getMessageFromUser();
+string VigenereCipher::encryptText(string msg, bool isCLI) {
+	if(isCLI)
+		msg = UI.getMessageFromUser();
 	string code {};
 
 	unsigned int iter {0};
-	msg = toUpper(msg);
-	keyword = toUpper(keyword);
+	toUpper(msg);
+	toUpper(keyword);
 
 	for(unsigned int i=0; i<msg.length(); i++) {
 
@@ -116,18 +121,21 @@ void VigenereCipher::encryptText() {
 		else
 			code += msg.at(i);
 	}
-	UI.printCode(code);
+	if(isCLI)
+		UI.printCode(code);
+	return code;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-void VigenereCipher::decryptText() {
-	string code = UI.getCodeFromUser();
+string VigenereCipher::decryptText(string code, bool isCLI) {
+	if(isCLI)
+		code = UI.getCodeFromUser();
 	string msg {};
 
    	unsigned int iter {0};
    	int loc;
-	code = toUpper(code);
-	keyword = toUpper(keyword);
+	toUpper(code);
+	toUpper(keyword);
 
 	for(unsigned int i=0; i<code.length(); i++) {
 
@@ -146,16 +154,19 @@ void VigenereCipher::decryptText() {
 		else
 			msg += code.at(i);
 	}
-	UI.printMessage(msg);
+	if(isCLI)
+		UI.printMessage(msg);
+	return msg;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-void AlbertiDiskCipher::encryptText() {
-	string msg = UI.getMessageFromUser();
+string AlbertiDiskCipher::encryptText(string msg, bool isCLI) {
+	if(isCLI)
+		msg = UI.getMessageFromUser();
 	string code {};
 
 	srand(time(nullptr));
-	msg = toUpper(msg);
+	toUpper(msg);
 	for(unsigned int i=0; i<msg.length(); i++) {
 		if(isalpha(msg.at(i)))
 			code += rotating.at((stationary.find(msg.at(i))+shift)%26);
@@ -169,12 +180,15 @@ void AlbertiDiskCipher::encryptText() {
 			code += stationary.at(shift);
 		}
 	}
-	UI.printCode(code);
+	if(isCLI)
+		UI.printCode(code);
+	return code;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-void AlbertiDiskCipher::decryptText() {
-	string code = UI.getCodeFromUser();
+string AlbertiDiskCipher::decryptText(string code, bool isCLI) {
+	if(isCLI)
+		code = UI.getCodeFromUser();
 	string msg {};
 
    	shift = 0;
@@ -199,18 +213,21 @@ void AlbertiDiskCipher::decryptText() {
 				msg += code.at(i);
 		}
 	}
-	UI.printMessage(msg);
+	if(isCLI)
+		UI.printMessage(msg);
+	return msg;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-string PlayFairCipher::encrypt() {
-	string inpt = UI.getMessageFromUser();
+string PlayFairCipher::encrypt(string inpt, bool isCLI) {
+	if(isCLI)
+		inpt = UI.getMessageFromUser();
 	string code {};
 
 	toEncrypt = true;
 	char last_char {'~'};
-	inpt = toUpper(inpt);
+	toUpper(inpt);
 
 	if(inpt.length()%2 != 0){
 	    last_char = inpt.at(inpt.length()-1);
@@ -231,18 +248,20 @@ string PlayFairCipher::encrypt() {
 
 	if(last_char != '~') code += last_char;
 
-	UI.printCode(code);
+	if(isCLI)
+		UI.printCode(code);
 	return code;
 }
 
-string PlayFairCipher::decrypt() {
-	string inpt = UI.getCodeFromUser();
+string PlayFairCipher::decrypt(string inpt, bool isCLI) {
+	if(isCLI)
+		inpt = UI.getCodeFromUser();
 	string mssge {};
 
     toEncrypt = false;
 
     char last_char {'~'};
-    inpt = toUpper(inpt);
+    toUpper(inpt);
 
     if(inpt.length()%2 != 0){
         last_char = inpt.at(inpt.length()-1);
@@ -260,10 +279,11 @@ string PlayFairCipher::decrypt() {
 		i += 2;
 	}
 
-  if(last_char != '~') mssge += last_char;
+	if(last_char != '~') mssge += last_char;
 
-  UI.printMessage(mssge);
-  return mssge;
+	if(isCLI)
+		UI.printMessage(mssge);
+	return mssge;
 }
 
 void PlayFairCipher::encryptDecryptPieces(string message) {
@@ -423,7 +443,7 @@ morse.push_back(make_pair('9',"11110"));
 string MorseCode::convertToMorseCode(string morseIn) {
 	string morseOut {};
 
-	morseIn = toUpper(morseIn);
+	toUpper(morseIn);
 	for(unsigned int i=0; i<morseIn.length(); i++) {
 		if(isalnum(morseIn.at(i)))
 			for(unsigned int j=0; j<morse.size(); j++) {
@@ -474,7 +494,7 @@ string MorseCode::convertFromMorseCode(string morseIn) {
 
 		if(found == false) morseIn += " Error ";
 	}
-	return morseOut;			
+	return morseOut;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -510,6 +530,10 @@ int main() {
                     	DE1.decryptText();
                     else
                     	DE1.encryptText();
+
+                    // cout << "Testing for no CLI approach"
+                    // cout << DE1.encryptText("Rutuparn", false) << endl;
+                    // cout << DE1.decryptText("WZYZUFWS", false) << endl;
 
                 }
 			    break;
