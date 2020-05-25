@@ -1,5 +1,15 @@
+/**
+* @file 
+* @author  Rutuparn Pawar <https://github.com/InputBlackBoxOutput>
+* @version 1.0
+*
+*/
 //////////////////////////////////////////////////////////////////////////////////////////
 #include "DEncryptor.h"
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+UserInterface UI;
+
 //////////////////////////////////////////////////////////////////////////////////////////
 // Helper functions
 void toUpper(string &str) {
@@ -16,8 +26,8 @@ void toLower(string &str) {
 
 
 //////////////////////////////////////////////////////////////////////////////////////////
-string CaesarCipher::encryptText(string msg, bool isCLI) {
-	if(isCLI)
+string CaesarCipher::encryptText(string msg, bool isInteractive) {
+	if(isInteractive)
 		msg = UI.getMessageFromUser();
     string code {};
 
@@ -38,14 +48,14 @@ string CaesarCipher::encryptText(string msg, bool isCLI) {
 		else
 			code += msg.at(i);
 	}
-	if(isCLI)
+	if(isInteractive)
 		UI.printCode(code);
     return code;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-string CaesarCipher::decryptText(string code, bool isCLI) {
-	if(isCLI)
+string CaesarCipher::decryptText(string code, bool isInteractive) {
+	if(isInteractive)
 		code = UI.getCodeFromUser();
     string msg {};
 
@@ -66,7 +76,7 @@ string CaesarCipher::decryptText(string code, bool isCLI) {
 		else
 			msg += code.at(i);
 	}
-	if(isCLI)
+	if(isInteractive)
 		UI.printMessage(msg);
     return msg;
 }
@@ -99,8 +109,8 @@ void VigenereCipher::createVigeneresSquare() {
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-string VigenereCipher::encryptText(string msg, bool isCLI) {
-	if(isCLI)
+string VigenereCipher::encryptText(string msg, bool isInteractive) {
+	if(isInteractive)
 		msg = UI.getMessageFromUser();
 	string code {};
 
@@ -121,14 +131,14 @@ string VigenereCipher::encryptText(string msg, bool isCLI) {
 		else
 			code += msg.at(i);
 	}
-	if(isCLI)
+	if(isInteractive)
 		UI.printCode(code);
 	return code;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-string VigenereCipher::decryptText(string code, bool isCLI) {
-	if(isCLI)
+string VigenereCipher::decryptText(string code, bool isInteractive) {
+	if(isInteractive)
 		code = UI.getCodeFromUser();
 	string msg {};
 
@@ -154,14 +164,14 @@ string VigenereCipher::decryptText(string code, bool isCLI) {
 		else
 			msg += code.at(i);
 	}
-	if(isCLI)
+	if(isInteractive)
 		UI.printMessage(msg);
 	return msg;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-string AlbertiDiskCipher::encryptText(string msg, bool isCLI) {
-	if(isCLI)
+string AlbertiDiskCipher::encryptText(string msg, bool isInteractive) {
+	if(isInteractive)
 		msg = UI.getMessageFromUser();
 	string code {};
 
@@ -180,14 +190,14 @@ string AlbertiDiskCipher::encryptText(string msg, bool isCLI) {
 			code += stationary.at(shift);
 		}
 	}
-	if(isCLI)
+	if(isInteractive)
 		UI.printCode(code);
 	return code;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-string AlbertiDiskCipher::decryptText(string code, bool isCLI) {
-	if(isCLI)
+string AlbertiDiskCipher::decryptText(string code, bool isInteractive) {
+	if(isInteractive)
 		code = UI.getCodeFromUser();
 	string msg {};
 
@@ -213,15 +223,15 @@ string AlbertiDiskCipher::decryptText(string code, bool isCLI) {
 				msg += code.at(i);
 		}
 	}
-	if(isCLI)
+	if(isInteractive)
 		UI.printMessage(msg);
 	return msg;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-string PlayFairCipher::encrypt(string inpt, bool isCLI) {
-	if(isCLI)
+string PlayFairCipher::encrypt(string inpt, bool isInteractive) {
+	if(isInteractive)
 		inpt = UI.getMessageFromUser();
 	string code {};
 
@@ -229,59 +239,63 @@ string PlayFairCipher::encrypt(string inpt, bool isCLI) {
 	char last_char {'~'};
 	toUpper(inpt);
 
-	if(inpt.length()%2 != 0){
-	    last_char = inpt.at(inpt.length()-1);
-	    inpt.erase(inpt.length()-1);
+	if(inpt.length() != 0) {
+
+		if(inpt.length()%2 != 0){
+		    last_char = inpt.at(inpt.length()-1);
+		    inpt.erase(inpt.length()-1);
+		}
+
+		size_t i {0};
+		while(i<inpt.length()-1){
+		    if(isalpha(inpt.at(i)) && isalpha(inpt.at(i+1))) {
+		      encryptDecryptPieces(inpt.substr(i,2));
+		      code += msg;
+		    }
+		    else {
+		      code += inpt.substr(i,2);
+		    }
+		    i += 2;
+		  }
+
+		if(last_char != '~') code += last_char;
 	}
 
-	size_t i {0};
-	while(i<inpt.length()-1){
-	    if(isalpha(inpt.at(i)) && isalpha(inpt.at(i+1))) {
-	      encryptDecryptPieces(inpt.substr(i,2));
-	      code += msg;
-	    }
-	    else {
-	      code += inpt.substr(i,2);
-	    }
-	    i += 2;
-	  }
-
-	if(last_char != '~') code += last_char;
-
-	if(isCLI)
+	if(isInteractive)
 		UI.printCode(code);
 	return code;
 }
 
-string PlayFairCipher::decrypt(string inpt, bool isCLI) {
-	if(isCLI)
+string PlayFairCipher::decrypt(string inpt, bool isInteractive) {
+	if(isInteractive)
 		inpt = UI.getCodeFromUser();
 	string mssge {};
 
     toEncrypt = false;
-
     char last_char {'~'};
     toUpper(inpt);
 
-    if(inpt.length()%2 != 0){
-        last_char = inpt.at(inpt.length()-1);
-        inpt.erase(inpt.length()-1);
-    }
-	size_t i {0};
-	while(i<inpt.length()-1){
-		if(isalpha(inpt.at(i)) && isalpha(inpt.at(i+1))) {
-			encryptDecryptPieces(inpt.substr(i,2));
-			mssge += msg;
+    if(inpt.length() != 0) {
+	    if(inpt.length()%2 != 0){
+	        last_char = inpt.at(inpt.length()-1);
+	        inpt.erase(inpt.length()-1);
+	    }
+		size_t i {0};
+		while(i<inpt.length()-1){
+			if(isalpha(inpt.at(i)) && isalpha(inpt.at(i+1))) {
+				encryptDecryptPieces(inpt.substr(i,2));
+				mssge += msg;
+			}
+			else {
+				mssge += inpt.substr(i,2);
+			}
+			i += 2;
 		}
-		else {
-			mssge += inpt.substr(i,2);
-		}
-		i += 2;
+
+		if(last_char != '~') mssge += last_char;
 	}
 
-	if(last_char != '~') mssge += last_char;
-
-	if(isCLI)
+	if(isInteractive)
 		UI.printMessage(mssge);
 	return mssge;
 }
@@ -495,97 +509,6 @@ string MorseCode::convertFromMorseCode(string morseIn) {
 		if(found == false) morseIn += " Error ";
 	}
 	return morseOut;
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////
-int main() {
-	cout << "--------------------------------------------------------------------" << endl;
-	cout << "DEncryptor\n" << endl;
-	cout << "--------------------------------------------------------------------" << endl;
-
-	int choice {0};
-	int process {0};
-	do {
-	cout << "\nWhich cipher do you want to use?" << endl;
-	cout << "1 - Caesar cipher \n2 - Vigenere Cipher" << endl;
-	cout << "3 - Alberti's Disk Cipher\n4 - Playfair Cipher\n" << endl;
-	cout << "Enter choice:";
-	cin >> choice;
-
-	cout << "\nDo you want to encrypt or decrpyt?" << endl;
-	cout << "0 - Encrypt \n1 - Decrypt" << endl;
-	cout << "Enter choice:";
-	cin >> process;
-
-	} while((choice < 1 || choice > 4) && (process == 0 || process == 1 ));
-
-    cin.sync(); // Clear buffer
-
-	switch(choice) {
-		case 1: cout << "--------------------------------------------------------------------" << endl;
-			    cout << "Caesar Cipher\n" << endl;
-                {
-                    CaesarCipher DE1(5);  // Shift = 5
-                    if(process)
-                    	DE1.decryptText();
-                    else
-                    	DE1.encryptText();
-
-                    // cout << "Testing for no CLI approach"
-                    // cout << DE1.encryptText("Rutuparn", false) << endl;
-                    // cout << DE1.decryptText("WZYZUFWS", false) << endl;
-
-                }
-			    break;
-
-		case 2: cout << "--------------------------------------------------------------------" << endl;
-			    cout << "Vigenere Cipher\n" << endl;
-			    {
-                    VigenereCipher DE2("BLACKBOX");
-                    if(process)
-                    	DE2.decryptText();
-                    else
-                    	DE2.encryptText();
-			    }
-			    break;
-
-		case 3: cout << "--------------------------------------------------------------------" << endl;
-    			cout << "Alberti's Disk Cipher\n" << endl;
-                {
-                    AlbertiDiskCipher DE3;
-                    if(process)
-                    	DE3.decryptText();
-                    else
-                    	DE3.encryptText();
-
-                }
-    			break;
-
-		case 4: cout << "--------------------------------------------------------------------" << endl;
-			    cout << "Playfair Cipher\n" << endl;
-			    {
-                    PlayFairCipher pf("cool");
-                    if(process)
-                    	pf.decrypt();
-                    else
-                    	pf.encrypt();
-			    }
-			    break;
-
-		default:cout << "Something went wrong!" << endl;
-	}
-
-	cout << "--------------------------------------------------------------------" << endl;
-
-    // cout << "Morse Code\n" << endl;
-    // MorseCode Morse;
-    // Morse.convertToMorseCode();
-    // Morse.convertFromMorseCode();
-    // cout << "--------------------------------------------------------------------" << endl;
-
-    // cout << " Press any key to exit..." << endl;
-    // getchar();   //wait until any key is pressed
-    return 0;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////

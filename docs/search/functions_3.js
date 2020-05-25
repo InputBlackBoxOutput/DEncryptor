@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['generatemorsecodemap_36',['generateMorseCodeMap',['../class_morse_code.html#a7049de52f3cb6ea7c52b93bf81a7898a',1,'MorseCode']]],
-  ['getcodefromuser_37',['getCodeFromUser',['../class_user_interface.html#af70e29a731fa6fbca3879544b49f8663',1,'UserInterface']]],
-  ['getmessagefromuser_38',['getMessageFromUser',['../class_user_interface.html#a3a46538d70bf60667ad439201cbfd032',1,'UserInterface']]]
+  ['encrypt_38',['encrypt',['../class_play_fair_cipher.html#a668eae03065aa979e4f5ee38e1efbc69',1,'PlayFairCipher']]],
+  ['encrypttext_39',['encryptText',['../class_caesar_cipher.html#aceb32b5f51fbf7e98cede404a9855e3b',1,'CaesarCipher::encryptText()'],['../class_vigenere_cipher.html#a4930aa6dc3b297e8d44c85996f256efd',1,'VigenereCipher::encryptText()'],['../class_alberti_disk_cipher.html#a2c49843a9304446bba5bfced4a600c73',1,'AlbertiDiskCipher::encryptText()']]]
 ];

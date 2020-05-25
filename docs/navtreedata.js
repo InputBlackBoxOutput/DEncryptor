@@ -41,7 +41,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_d_encryptor_8h_source.html"
+"_d_encryptor_8cpp.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

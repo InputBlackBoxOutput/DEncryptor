@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['decrypt_32',['decrypt',['../class_play_fair_cipher.html#abed8a4b5d9f464aafa39f362d61c918d',1,'PlayFairCipher']]],
-  ['decrypttext_33',['decryptText',['../class_caesar_cipher.html#aeea39d3010c27f47a332462b5fd11e15',1,'CaesarCipher::decryptText()'],['../class_vigenere_cipher.html#a22bd1382641921a25743e2a4f32eed96',1,'VigenereCipher::decryptText()'],['../class_alberti_disk_cipher.html#a5809f25dbae8704d29db07a03ad38c37',1,'AlbertiDiskCipher::decryptText()']]]
+  ['caesarcipher_33',['CaesarCipher',['../class_caesar_cipher.html#a6726507c04df3fb3c048120164b77e0d',1,'CaesarCipher']]],
+  ['convertfrommorsecode_34',['convertFromMorseCode',['../class_morse_code.html#a1e05b6046e19a9b5ab4024e27b1b26f5',1,'MorseCode']]],
+  ['converttomorsecode_35',['convertToMorseCode',['../class_morse_code.html#af1680feb2114b7786335340b14c7faa7',1,'MorseCode']]]
 ];

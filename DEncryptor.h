@@ -1,3 +1,9 @@
+/**
+* @file
+* @author  Rutuparn Pawar <https://github.com/InputBlackBoxOutput>
+* @version 1.0
+*
+*/
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 #include <iostream>
 #include <cctype>
@@ -23,13 +29,6 @@ class MorseCode{
 			generateMorseCodeMap();
 		}
 
-        /**
-         Generates a lookup table for roman alphabets and digits
-         @note This function is called by constructor
-         @attention Do not call this function
-	    */
-	    void generateMorseCodeMap();
-
 	    /**
          Converts roman alphabets and digits into Morse code
          @note Characters other than roman alphabets and digits are left unchanged
@@ -47,11 +46,9 @@ class MorseCode{
 		string convertFromMorseCode(string morseIn);
 
 	private:
+		void generateMorseCodeMap();
 		vector< pair <char, string>> morse;
 };
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-MorseCode M;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
@@ -59,6 +56,8 @@ MorseCode M;
 */
 class UserInterface {
 public:
+    MorseCode M;
+
     /**
      Prompts the user for message
      @returns Message
@@ -103,8 +102,6 @@ public:
 
 };
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-UserInterface UI;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
@@ -123,23 +120,27 @@ class CaesarCipher{
 		/**
      	 Encrypts message using Caesar cipher
      	 @param msg Message
-     	 @param isCLI Prompt for message and print encrypted message on CLI
+     	 @param isInteractive Prompt for message and print encrypted message on CLI
     	*/
-		string encryptText(string msg="", bool isCLI=true);
+		string encryptText(string msg="", bool isInteractive=true);
 
 		/**
      	 Decrypts message using Caesar cipher
      	 @param code Encrypted message
-     	 @param isCLI Prompt for encrypted message and print decrypted message on CLI
+     	 @param isInteractive Prompt for encrypted message and print decrypted message on CLI
     	*/
-		string decryptText(string code="", bool isCLI=true);
+		string decryptText(string code="", bool isInteractive=true);
 
 		/**
      	 Set the shift used by Caesar cipher
      	 @param sft Shift each character by this value
+     	 @note Only positive shift is allowed
     	*/
 		void setShift(int sft) {
-			shift = sft;
+		    if(sft > 0)
+                shift = sft;
+            else
+                cout << "Only positive shift is allowed";
 		}
 
 	private:
@@ -163,25 +164,18 @@ class VigenereCipher{
 		}
 
 		/**
-         Generates Vigenere's square
-         @note This function is called by constructor
-         @attention Do not call this function
-	    */
-		void createVigeneresSquare();
-
-		/**
      	 Encrypts message using Vigenere's cipher
      	 @param msg Message
-     	 @param isCLI Prompt for message and print encrypted message on CLI
+     	 @param isInteractive Prompt for message and print encrypted message on CLI
     	*/
-		string encryptText(string msg="", bool isCLI=true);
+		string encryptText(string msg="", bool isInteractive=true);
 
 		/**
      	 Decrypts message using Vigenere's cipher
      	 @param code Encrypted message
-     	 @param isCLI Prompt for encrypted message and print decrypted message on CLI
+     	 @param isInteractive Prompt for encrypted message and print decrypted message on CLI
     	*/
-		string decryptText(string code="", bool isCLI=true);
+		string decryptText(string code="", bool isInteractive=true);
 
 		/**
      	 Set the keyword used by Vigenere's cipher
@@ -193,6 +187,8 @@ class VigenereCipher{
 		}
 
 	private:
+		void createVigeneresSquare();
+
 		string keyword {"DUOSVAVVM"};   //Shugborough inscription
 		char vigenereSquare[26][26] {};
 		string index {"ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
@@ -206,22 +202,29 @@ class AlbertiDiskCipher{
 
 	public:
 		/**
+     	 Constructor for class PlayFairCipher
+		*/
+		AlbertiDiskCipher(int initShift) {
+			rotating = rotating.substr(initShift, rotating.length()) + rotating.substr(0,initShift);
+		}
+		/**
      	 Encrypts message using Alberti's disk cipher
      	 @param msg Message
-     	 @param isCLI Prompt for message and print encrypted message on CLI
+     	 @param isInteractive Prompt for message and print encrypted message on CLI
     	*/
-		string encryptText(string msg="", bool isCLI=true);
+		string encryptText(string msg="", bool isInteractive=true);
 
 		/**
      	 Decrypts message using Alberti's disk cipher
      	 @param code Encrypted message
-     	 @param isCLI Prompt for encrypted message and print decrypted message on CLI
+     	 @param isInteractive Prompt for encrypted message and print decrypted message on CLI
     	*/
-		string decryptText(string code="", bool isCLI=true);
+		string decryptText(string code="", bool isInteractive=true);
 
 		/**
      	 Set the stationary disk used by Alberti's disk cipher
      	 @param stat This string is used as the stationary disk
+     	 @attention Parameter 'stat' should have 26 characters (from a to z) with each character occurring only once.
     	*/
 		void setStatDisk(string stat) {
 			if(stat.length() == 26)
@@ -233,6 +236,7 @@ class AlbertiDiskCipher{
 		/**
      	 Set the rotating disk used by Alberti's disk cipher
      	 @param rot This string is used as the rotating disk
+     	 @attention Parameter 'stat' should have 26 characters (from a to z) with each character occurring only once.
     	*/
 		void setRotDisk(string rot) {
 			if(rot.length() == 26)
@@ -264,16 +268,16 @@ public:
     /**
      Encrypts message using Playfair cipher
      @param inpt Message
-     @param isCLI Prompt for message and print encrypted message on CLI
+     @param isInteractive Prompt for message and print encrypted message on CLI
     */
-    string encrypt(string inpt="", bool isCLI=true);
+    string encrypt(string inpt="", bool isInteractive=true);
 
     /**
      Decrypts message using Playfair cipher
      @param inpt Encrypted message
-     @param isCLI Prompt for encrypted message and print decrypted message on CLI
+     @param isInteractive Prompt for encrypted message and print decrypted message on CLI
     */
-    string decrypt(string inpt="", bool isCLI=true);
+    string decrypt(string inpt="", bool isInteractive=true);
 
 
     /**

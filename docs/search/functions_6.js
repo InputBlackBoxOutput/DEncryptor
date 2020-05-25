@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['setkeyword_43',['setKeyword',['../class_vigenere_cipher.html#aa0460b33c49dec8a841e6bb50208eadc',1,'VigenereCipher::setKeyword()'],['../class_play_fair_cipher.html#ab76e0f754d27ca9355017c34f09e1e27',1,'PlayFairCipher::setKeyword()']]],
-  ['setrotdisk_44',['setRotDisk',['../class_alberti_disk_cipher.html#afa15c5ab2afd0e01ad4b4f14f1bee169',1,'AlbertiDiskCipher']]],
-  ['setshift_45',['setShift',['../class_caesar_cipher.html#ae55e6718c61eb14c3723b456606e8635',1,'CaesarCipher']]],
-  ['setstatdisk_46',['setStatDisk',['../class_alberti_disk_cipher.html#ac2f122728580bd187be190d180f4a40d',1,'AlbertiDiskCipher']]]
+  ['playfaircipher_43',['PlayFairCipher',['../class_play_fair_cipher.html#aa56a3d3fb28ff7a424fb7f5c61c4223b',1,'PlayFairCipher']]],
+  ['printcode_44',['printCode',['../class_user_interface.html#ab4514a2703d683b1d852a3293d968fc4',1,'UserInterface']]],
+  ['printmessage_45',['printMessage',['../class_user_interface.html#a089e3a945a910121084463d0245ecfc1',1,'UserInterface']]]
 ];
