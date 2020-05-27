@@ -126,7 +126,6 @@ int processStuff(bool isInteractive, int cipher=0, bool toEncrypt=NULL, const st
     string code {};
     string message {};
 
-
     switch(cipher) {
         case 1:{
                     if(isInteractive == true) {
@@ -283,6 +282,7 @@ int main(int argc, char* argv[]){
 
     // The following needs to be tested
     //extendFile("test/randomText.txt");
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////

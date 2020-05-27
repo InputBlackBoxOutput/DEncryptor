@@ -34,6 +34,8 @@
 		</Compiler>
 		<Unit filename="DEncryptor.cpp" />
 		<Unit filename="DEncryptor.h" />
+		<Unit filename="Morse.cpp" />
+		<Unit filename="Morse.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="testFile.txt" />
 		<Extensions>

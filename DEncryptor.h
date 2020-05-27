@@ -9,48 +9,10 @@
 #include <cctype>
 #include <ctime>
 #include <string>
-#include <vector>
-#include <utility>
+#include "Morse.h"
 
 using namespace std;
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- This class provides all functionalities related with Morse code.
-*/
-
-class MorseCode{
-
-	public:
-	    /**
-         Constructor for class MorseCode
-	    */
-		MorseCode() {
-			generateMorseCodeMap();
-		}
-
-	    /**
-         Converts roman alphabets and digits into Morse code
-         @note Characters other than roman alphabets and digits are left unchanged
-         @param morseIn Encrypted message
-         @returns Encrypted message in Morse code
-	    */
-		string convertToMorseCode(string morseIn);
-
-        /**
-         Converts Morse code into roman alphabets and digits
-         @note Characters other than roman alphabets and digits are left unchanged
-         @param morseIn Encrypted message in Morse code
-         @returns Encrypted message
-	    */
-		string convertFromMorseCode(string morseIn);
-
-	private:
-		void generateMorseCodeMap();
-		vector< pair <char, string>> morse;
-};
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  This class provides all functionalities related with text input and output.
 */
