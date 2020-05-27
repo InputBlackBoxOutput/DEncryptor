@@ -91,29 +91,33 @@ $(document).ready(function(){initNavTree('main_8cpp.html',''); initResizable(); 
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="_d_encryptor_8h_source.html">DEncryptor.h</a>&quot;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
 <code>#include &lt;fstream&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab7d155ac6d34e272964af1135ae3bbac"><td class="memItemLeft" align="right" valign="top"><a id="ab7d155ac6d34e272964af1135ae3bbac"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>getKeyword</b> ()</td></tr>
+<tr class="memitem:ab7d155ac6d34e272964af1135ae3bbac"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ab7d155ac6d34e272964af1135ae3bbac">getKeyword</a> ()</td></tr>
+<tr class="memdesc:ab7d155ac6d34e272964af1135ae3bbac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prompts the user for a keyword.  <a href="main_8cpp.html#ab7d155ac6d34e272964af1135ae3bbac">More...</a><br /></td></tr>
 <tr class="separator:ab7d155ac6d34e272964af1135ae3bbac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa109cddf52700aa369e27a16257a8289"><td class="memItemLeft" align="right" valign="top"><a id="aa109cddf52700aa369e27a16257a8289"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getShift</b> (char condition)</td></tr>
+<tr class="memitem:aa109cddf52700aa369e27a16257a8289"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#aa109cddf52700aa369e27a16257a8289">getShift</a> (char condition)</td></tr>
+<tr class="memdesc:aa109cddf52700aa369e27a16257a8289"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prompts the user for a shift.  <a href="main_8cpp.html#aa109cddf52700aa369e27a16257a8289">More...</a><br /></td></tr>
 <tr class="separator:aa109cddf52700aa369e27a16257a8289"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6845631f987c965638c681f4250011ab"><td class="memItemLeft" align="right" valign="top"><a id="a6845631f987c965638c681f4250011ab"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printCipherHeader</b> (const string cipher)</td></tr>
+<tr class="memitem:a6845631f987c965638c681f4250011ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a6845631f987c965638c681f4250011ab">printCipherHeader</a> (const string cipher)</td></tr>
+<tr class="memdesc:a6845631f987c965638c681f4250011ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints cipher headers when in interactive mode.  <a href="main_8cpp.html#a6845631f987c965638c681f4250011ab">More...</a><br /></td></tr>
 <tr class="separator:a6845631f987c965638c681f4250011ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd7a178f382b2bcdb91d38b86a2823ea"><td class="memItemLeft" align="right" valign="top"><a id="afd7a178f382b2bcdb91d38b86a2823ea"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>extendFile</b> (const string filename)</td></tr>
-<tr class="separator:afd7a178f382b2bcdb91d38b86a2823ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae017116a19017d167e3f5a53c81175f7"><td class="memItemLeft" align="right" valign="top"><a id="ae017116a19017d167e3f5a53c81175f7"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>processStuff</b> (bool isInteractive, int cipher=0, bool toEncrypt=NULL, const string filename=&quot;&quot;)</td></tr>
-<tr class="separator:ae017116a19017d167e3f5a53c81175f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88c4d2cf46a149d0f331e51972805633"><td class="memItemLeft" align="right" valign="top"><a id="a88c4d2cf46a149d0f331e51972805633"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>testCiphers</b> ()</td></tr>
+<tr class="memitem:a8c3126060fb619403036b269112910d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a8c3126060fb619403036b269112910d0">extendFile</a> (const string filename)</td></tr>
+<tr class="memdesc:a8c3126060fb619403036b269112910d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">To deal with files that do not have a new line at the end.  <a href="main_8cpp.html#a8c3126060fb619403036b269112910d0">More...</a><br /></td></tr>
+<tr class="separator:a8c3126060fb619403036b269112910d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf55018b1f80197542abbefeefc5f2b1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#acf55018b1f80197542abbefeefc5f2b1">processStuff</a> (bool isInteractive, int cipher=0, bool toEncrypt=NULL, const string infile=&quot;&quot;, const string outfile=&quot;&quot;)</td></tr>
+<tr class="memdesc:acf55018b1f80197542abbefeefc5f2b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads text form a file/CLI, encryts/decrypts and then gives output by writing to a file or printing on CLI.  <a href="main_8cpp.html#acf55018b1f80197542abbefeefc5f2b1">More...</a><br /></td></tr>
+<tr class="separator:acf55018b1f80197542abbefeefc5f2b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88c4d2cf46a149d0f331e51972805633"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a88c4d2cf46a149d0f331e51972805633">testCiphers</a> ()</td></tr>
+<tr class="memdesc:a88c4d2cf46a149d0f331e51972805633"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use for testing all ciphers at once.  <a href="main_8cpp.html#a88c4d2cf46a149d0f331e51972805633">More...</a><br /></td></tr>
 <tr class="separator:a88c4d2cf46a149d0f331e51972805633"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec315d77f5c38417289a0e311d2a9d31"><td class="memItemLeft" align="right" valign="top"><a id="aec315d77f5c38417289a0e311d2a9d31"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>showHelp</b> ()</td></tr>
+<tr class="separator:aec315d77f5c38417289a0e311d2a9d31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top"><a id="a0ddf1224851353fc92bfbff6f499fa97"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (int argc, char *argv[])</td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,13 +130,197 @@ LICENSE</h1>
 <p>This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
 <p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
 <p>You should have received a copy of the GNU General Public License along with this program. If not, see <a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>. </p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a8c3126060fb619403036b269112910d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c3126060fb619403036b269112910d0">&#9670;&nbsp;</a></span>extendFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void extendFile </td>
+          <td>(</td>
+          <td class="paramtype">const string&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>To deal with files that do not have a new line at the end. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>Name of the file which does not have EOL at the EOF </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section attention"><dt>Attention</dt><dd>Not implemented yet. Do not use! </dd></dl>
+
+</div>
+</div>
+<a id="ab7d155ac6d34e272964af1135ae3bbac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7d155ac6d34e272964af1135ae3bbac">&#9670;&nbsp;</a></span>getKeyword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string getKeyword </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prompts the user for a keyword. </p>
+<dl class="section note"><dt>Note</dt><dd>A keyword is required for some ciphers </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Keyword fetched from user </dd></dl>
+
+</div>
+</div>
+<a id="aa109cddf52700aa369e27a16257a8289"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa109cddf52700aa369e27a16257a8289">&#9670;&nbsp;</a></span>getShift()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getShift </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>condition</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prompts the user for a shift. </p>
+<p>Conditions: c =&gt; Caesar cipher a =&gt; Alberti's disk cipher</p>
+<dl class="section note"><dt>Note</dt><dd>A shift is required for some ciphers </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">condition</td><td>Sets the condition to be checked </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Shift fetched from user </dd></dl>
+
+</div>
+</div>
+<a id="a6845631f987c965638c681f4250011ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6845631f987c965638c681f4250011ab">&#9670;&nbsp;</a></span>printCipherHeader()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printCipherHeader </td>
+          <td>(</td>
+          <td class="paramtype">const string&#160;</td>
+          <td class="paramname"><em>cipher</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints cipher headers when in interactive mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cipher</td><td>Name of the cipher </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acf55018b1f80197542abbefeefc5f2b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf55018b1f80197542abbefeefc5f2b1">&#9670;&nbsp;</a></span>processStuff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int processStuff </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isInteractive</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>cipher</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>toEncrypt</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const string&#160;</td>
+          <td class="paramname"><em>infile</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const string&#160;</td>
+          <td class="paramname"><em>outfile</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads text form a file/CLI, encryts/decrypts and then gives output by writing to a file or printing on CLI. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">isInteractive</td><td>Sets whether operations need to be done in interactive mode </td></tr>
+    <tr><td class="paramname">cipher</td><td>Sets the cipher to use </td></tr>
+    <tr><td class="paramname">toEncrypt</td><td>Sets whether to encrypt or decrypt </td></tr>
+    <tr><td class="paramname">infile</td><td>Name of the file to be read </td></tr>
+    <tr><td class="paramname">outfile</td><td>Name of the file where o/p should be written </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns 0 upon success </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Does all the managing work </dd></dl>
+
+</div>
+</div>
+<a id="a88c4d2cf46a149d0f331e51972805633"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88c4d2cf46a149d0f331e51972805633">&#9670;&nbsp;</a></span>testCiphers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void testCiphers </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Use for testing all ciphers at once. </p>
+<dl class="section attention"><dt>Attention</dt><dd>Requires files in the test folder </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="main_8cpp.html">main.cpp</a></li>
-    <li class="footer">Generated on Mon May 25 2020 14:52:39 for DEncryptor by
+    <li class="footer">Generated on Wed May 27 2020 20:03:36 for DEncryptor by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.18 </li>
   </ul>

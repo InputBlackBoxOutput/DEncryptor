@@ -22,12 +22,18 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 #include "DEncryptor.h"
 #include <iostream>
+#include <unistd.h>
 #include <fstream>
 #include <string>
 
 using namespace std;
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+/**
+Prompts the user for a keyword. 
+@note A keyword is required for some ciphers
+@returns Keyword fetched from user
+*/
 string getKeyword() {
     string keyword {};
     cout << "Enter keyword: ";
@@ -36,10 +42,17 @@ string getKeyword() {
     return keyword;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-// Values for condition:
-// c => Caesar cipher
-// a => Alberti's disk cipher
+//////////////////////////////////////////////////////////////////////////////////////////
+/**
+Prompts the user for a shift. 
+Conditions:
+c => Caesar cipher
+a => Alberti's disk cipher
+
+@note A shift is required for some ciphers
+@param condition Sets the condition to be checked
+@returns Shift fetched from user
+*/
 
 int getShift(char condition) {
     int shift {};
@@ -66,27 +79,45 @@ int getShift(char condition) {
     return shift;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+/**
+Prints cipher headers when in interactive mode.
+@param cipher Name of the cipher
+*/
 void printCipherHeader(const string cipher) {
     cout << "\n------------------------------------------------------------------------" << endl;
     cout << cipher << endl;
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-// To deal with files do not have a new line at the end
-int extendFile(const string filename) {
-    ofstream fout;
-    fout.open(filename, ios::app);
+//////////////////////////////////////////////////////////////////////////////////////////
+/**
+To deal with files that do not have a new line at the end
+@param filename Name of the file which does not have EOL at the EOF
+@attention Not implemented yet. Do not use!
+*/
+void extendFile(const string filename) {
+    // ofstream fout;
+    // fout.open(filename, ios::app);
 
-    while(fout) {
-        fout << "End of File\n" << endl;
-        break;
-    }
-    fout.close();
-    return 0;
+    // while(fout) {
+    //     fout << "End of File\n" << endl;
+    //     break;
+    // }
+    // fout.close();
+    return;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-int processStuff(bool isInteractive, int cipher=0, bool toEncrypt=NULL, const string filename="") {
+//////////////////////////////////////////////////////////////////////////////////////////
+/**
+Reads text form a file/CLI, encryts/decrypts and then gives output by writing to a file or printing on CLI.
+@param isInteractive Sets whether operations need to be done in interactive mode
+@param cipher Sets the cipher to use
+@param toEncrypt Sets whether to encrypt or decrypt
+@param infile Name of the file to be read
+@param outfile Name of the file where o/p should be written 
+@returns Returns 0 upon success
+@note Does all the managing work
+*/
+int processStuff(bool isInteractive, int cipher=0, bool toEncrypt=NULL, const string infile="", const string outfile="") {
 
     if(isInteractive == true) {
         cout << "------------------------------------------------------------------------" << endl;
@@ -115,16 +146,14 @@ int processStuff(bool isInteractive, int cipher=0, bool toEncrypt=NULL, const st
 
 
     ifstream fin;
-    if(filename != "")
-         fin.open(filename);
+    if(infile != "")
+        fin.open(infile);
 
-    // ofstream fout;
-    // if(filename != "")
-    //      fin.open("out" + filename);
+    ofstream fout;
+    if(outfile != "")
+        fout.open(outfile);
 
-    string line {};
-    string code {};
-    string message {};
+    string line {}, code {} ,message {};
 
     switch(cipher) {
         case 1:{
@@ -141,12 +170,18 @@ int processStuff(bool isInteractive, int cipher=0, bool toEncrypt=NULL, const st
                         if(toEncrypt)
                             while(fin) {
                                 getline(fin, line);
-                                cout << CC.encryptText(line, false) << endl;
+                                if(outfile != "")
+                                    fout << CC.encryptText(line, false) << endl;
+                                else
+                                    cout << CC.encryptText(line, false) << endl;
                             }
                         else
                             while(fin) {
                                 getline(fin, line);
-                                cout << CC.decryptText(line, false) << endl;
+                                if(outfile != "")
+                                    fout << CC.decryptText(line, false) << endl;
+                                else
+                                    cout << CC.decryptText(line, false) << endl;
                             }
                     }
                }
@@ -166,12 +201,18 @@ int processStuff(bool isInteractive, int cipher=0, bool toEncrypt=NULL, const st
                         if(toEncrypt)
                             while(fin) {
                                 getline(fin, line);
-                                cout << VC.encryptText(line, false) << endl;
+                                if(outfile != "")
+                                    fout << VC.encryptText(line, false) << endl;
+                                else
+                                    cout << VC.decryptText(line, false) << endl;
                             }
                         else
                             while(fin) {
                                 getline(fin, line);
-                                cout << VC.decryptText(line, false) << endl;
+                                if(outfile != "")
+                                    fout << VC.decryptText(line, false) << endl;
+                                else
+                                    cout << VC.decryptText(line, false) << endl;
                             }
                     }
                }
@@ -192,12 +233,18 @@ int processStuff(bool isInteractive, int cipher=0, bool toEncrypt=NULL, const st
                         if(toEncrypt)
                             while(fin) {
                                 getline(fin, line);
-                                cout << ADC.encryptText(line, false) << endl;
+                                if(outfile != "")
+                                    fout << ADC.encryptText(line, false) << endl;
+                                else
+                                    cout << ADC.decryptText(line, false) << endl;
                             }
                         else
                             while(fin) {
                                 getline(fin, line);
-                                cout << ADC.decryptText(line, false) << endl;
+                                if(outfile != "")
+                                    fout << ADC.decryptText(line, false) << endl;
+                                else
+                                    cout << ADC.decryptText(line, false) << endl;
                             }
                     }
 
@@ -218,12 +265,18 @@ int processStuff(bool isInteractive, int cipher=0, bool toEncrypt=NULL, const st
                         if(toEncrypt)
                             while(fin) {
                                 getline(fin, line);
-                                cout << PF.encrypt(line, false) << endl;
+                                if(outfile != "")
+                                    fout << PF.encrypt(line, false) << endl;
+                                else
+                                    cout << PF.decrypt(line, false) << endl;
                             }
                         else
                             while(fin) {
                                 getline(fin, line);
-                                cout << PF.decrypt(line, false) << endl;
+                                if(outfile != "")
+                                    fout << PF.decrypt(line, false) << endl;
+                                else
+                                    cout << PF.decrypt(line, false) << endl;
                             }
                     }
 
@@ -246,6 +299,9 @@ int processStuff(bool isInteractive, int cipher=0, bool toEncrypt=NULL, const st
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
+/** Use for testing all ciphers at once.
+@attention Requires files in the test folder
+*/
 void testCiphers() {
     cout << "Caesar Cipher" << endl;
     cout << "----------Encrypt-----------" << endl;
@@ -273,12 +329,97 @@ void testCiphers() {
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
+void showHelp() {
+    cout << "Help has not been written into the application yet.\nApologies for the inconvenience :-(" << endl;
+    cout << "\nFor help see https://github.com/InputBlackBoxOutput/DEncryptor" << endl;
+    cout << "\nDesigned and developed by Rutuparn Pawar <InputBlackBoxOutput>" << endl;
+}
+//////////////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char* argv[]){
+    bool toReturn {false};
+    string cipher {"C"}, infile {}, outfile {"outfile"};
+    bool toEncrypt {false};
+
+    if(argc == 1) {
+         // Interactive mode
+        processStuff(true);
+        return 0;
+    }
+    else {
+        int opt;
+
+        while((opt = getopt(argc, argv, ":io:c:e:d:h")) != -1) {
+
+            switch(opt) {
+                case 'i': processStuff(true); toReturn=true; break;
+
+                case 'e': if(infile.length() == 0) {
+                                infile = optarg;
+                                toEncrypt = true;
+                            }
+                          else{
+                            cout << "Only one operation can be performed at a time";
+                            toReturn=true;
+                          }  break;
+
+                case 'd': if(infile.length() == 0) {
+                                infile = optarg;
+                            }
+                          else{
+                            cout << "Only one operation can be performed at a time";
+                            toReturn=true;
+                          }  break; break;
+
+                case 'c': if(string(optarg).length() == 1)
+                            cipher = optarg;
+                          else{
+                            cout << "Invalid option for cipher";
+                            toReturn=true;
+                          }
+                        break;
+
+                case 'o': outfile = string(optarg); if(!string(outfile).compare("console")) outfile =""; break;
+
+                case 'h': showHelp(); toReturn=true; break;
+
+                // \nUsage: DEncryptor.exe [-i/-o/-c/-e/-d] [filename]
+                case ':': cout << "\nSee help using \'-h\' option\n"; break;
+
+                case '?': cout << "\nInvalid option: " << (char)optopt << "\n See all options using \'DEncryptor.exe -h\'"<< endl; break;
+            }
+        }
+
+        if(toReturn == true) return 0;
+
+        cout << "Processing file: " << infile << endl;
+        cout << "Using Cipher: ";
+
+        if(!cipher.compare("C")) {
+            cout << "Caesar Cipher" << endl;
+            processStuff(false, 1, toEncrypt, infile, outfile);
+        }
+        else if(!cipher.compare("V")) {
+            cout << "Vigenere Cipher" << endl;
+            processStuff(false, 2, toEncrypt, infile, outfile);
+        }
+        else if(!cipher.compare("A")) {
+            cout << "Alberti's Disk Cipher" << endl;
+            processStuff(false, 3, toEncrypt, infile, outfile);
+        }
+        else if(!cipher.compare("P")) {
+            cout << "Playfair Cipher" << endl;
+            processStuff(false, 4, toEncrypt, infile, outfile);
+        }
+
+        cout << "Done" << endl;
+
+    }
+
+    return 0;
+
+    // The show-stoppers 
     // Alberti's disk cipher : When dealing with files the first word in a line not decrypting correctly!
     // testCiphers();
-
-    // Interactive mode
-    processStuff(true);
 
     // The following needs to be tested
     //extendFile("test/randomText.txt");

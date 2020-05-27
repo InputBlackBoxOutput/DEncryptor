@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vigenerecipher_22',['VigenereCipher',['../class_vigenere_cipher.html',1,'VigenereCipher'],['../class_vigenere_cipher.html#a2dc089e66b4f5e82a43cda6ff6cb68f0',1,'VigenereCipher::VigenereCipher()']]]
+  ['userinterface_29',['UserInterface',['../class_user_interface.html',1,'']]]
 ];
