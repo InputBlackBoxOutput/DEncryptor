@@ -1,5 +1,5 @@
 /**
-* @file 
+* @file
 * @author  Rutuparn Pawar <https://github.com/InputBlackBoxOutput>
 * @version 1.0
 *
@@ -91,8 +91,8 @@ reverseMorse.insert(make_pair("11110", '9'));
 // cout << morse['A']  << endl;   // A 01
 // cout << morse['H']  << endl;   // H 0000
 
-// cout << (char)reverseMorse["010"]  << endl;    // 010  R 
-// cout << (char)reverseMorse["0110"]  << endl;   // 0110 P 
+// cout << (char)reverseMorse["010"]  << endl;    // 010  R
+// cout << (char)reverseMorse["0110"]  << endl;   // 0110 P
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -105,7 +105,7 @@ string MorseCode::convertToMorseCode(string morseIn) {
 		if(isalnum(morseIn.at(i)))
 			morseOut += morse[morseIn.at(i)] + "-";
 		else
-			morseOut += morseIn.at(i) + "-";
+			morseOut += (char)morseIn.at(i);
 
 	}
 	return morseOut;
@@ -116,13 +116,20 @@ string MorseCode::convertFromMorseCode(string morseIn) {
    	string morseOut {};
    	string temp {};
 
+   	char check {};
    	for(unsigned int i=0; i<morseIn.length(); i++) {
-   		temp += morseIn.at(i);
+   		check = morseIn.at(i);
+   		if(check == '0' || check == '1' || check =='-') {
+   			temp += check;
 
-   		if(morseIn.at(i+1) == '-' && reverseMorse.count(temp) == 1) {
+   			if(morseIn.at(i+1) == '-' && reverseMorse.count(temp) == 1) {
    			morseOut += reverseMorse[temp];
    			i++;
    			temp = "";
+   			}
+   		}
+   		else {
+   			morseOut += (char)check;
    		}
    	}
 

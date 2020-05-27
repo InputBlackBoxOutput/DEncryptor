@@ -1,5 +1,5 @@
 /**
-* @file 
+* @file
 * @author  Rutuparn Pawar <https://github.com/InputBlackBoxOutput>
 * @version 1.0
 *
@@ -236,8 +236,8 @@ int processStuff(bool isInteractive, int cipher=0, bool toEncrypt=NULL, const st
 
     if(isInteractive == true) {
         cout << "------------------------------------------------------------------------" << endl;
-        // cout << " Press any key to exit..." << endl;
-        // getchar();   //wait until any key is pressed
+        cout << "Press any key to exit..." << endl;
+        getchar();   //wait until any key is pressed
     }
     else
         fin.close();

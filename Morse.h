@@ -7,6 +7,7 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include <cctype>
 
 using namespace std;
 
@@ -47,10 +48,10 @@ class MorseCode{
 		map<string, int> reverseMorse;            
 		// vector< pair <char, string>> morse;
 
-	// Use below code for testing
-	// MorseCode mc;
-	// cout << mc.convertToMorseCode("az") << endl;            //Gives "01-1100-"
-	// cout << mc.convertFromMorseCode("01-1100-") << endl;    //Gives "AZ"
+    // Use below code for testing
+    // MorseCode mc;
+    // cout << mc.convertToMorseCode("az!") << endl;            //Gives "01-1100-!"
+    // cout << mc.convertFromMorseCode("01-1100-!") << endl;    //Gives "AZ!"
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////
