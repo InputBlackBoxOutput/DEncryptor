@@ -20,7 +20,8 @@
 */
 
 //////////////////////////////////////////////////////////////////////////////////////////
-#include "DEncryptor.h"
+#include "DEncryptor1.h"
+// #include "DEncryptor2.h"
 #include <iostream>
 #include <unistd.h>
 #include <fstream>

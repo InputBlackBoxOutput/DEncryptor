@@ -32,8 +32,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="DEncryptor.cpp" />
-		<Unit filename="DEncryptor.h" />
+		<Unit filename="DEncryptor1.cpp" />
+		<Unit filename="DEncryptor1.h" />
+		<Unit filename="DEncryptor2.cpp" />
+		<Unit filename="Dencryptor2.h" />
 		<Unit filename="Morse.cpp" />
 		<Unit filename="Morse.h" />
 		<Unit filename="main.cpp" />
