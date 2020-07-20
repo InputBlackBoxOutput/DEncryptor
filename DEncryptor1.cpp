@@ -1,5 +1,5 @@
 /**
-* @file 
+* @file
 * @author  Rutuparn Pawar <https://github.com/InputBlackBoxOutput>
 * @version 1.0
 *
@@ -191,14 +191,14 @@ string AlbertiDiskCipher::encryptText(string msg, bool isInteractive) {
 		}
 	}
 	if(isInteractive)
-		UI.printCode(code);
+		UI.printCode(code, false);
 	return code;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 string AlbertiDiskCipher::decryptText(string code, bool isInteractive) {
 	if(isInteractive)
-		code = UI.getCodeFromUser();
+		code = UI.getCodeFromUser(false);
 	string msg {};
 
    	shift = 0;

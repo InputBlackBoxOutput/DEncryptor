@@ -4,6 +4,9 @@
 * @version 1.0
 *
 */
+
+#ifndef DENCRYPTOR_2H
+#define DENCRYPTOR_2H
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 #include <iostream>
 #include <ctime>
@@ -19,24 +22,41 @@ using namespace std;
 class XOR_Cipher {
 
 public:
-	XOR_Cipher(char XOR){
-		XORwith = XOR;
-	}
-	string encryptDecrypt(string);
+    XOR_Cipher(char XOR){
+        XORwith = toBinary(XOR);
+    }
+    string toBinary(int n);
+    int fromBinary(string bin);
+    string encryptText(string text);
+    string decryptText(string text);
+    string bin {""};
 
 private:
-	char XORwith {'I'};
+    string XORwith {""}; 
+    
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 class HillCipher {
 public:
-    string encrypt(string message, string keyword);
+	HillCipher(string keyword) {
+		// Maintain this order of function call
+		createEncryptMatrix(keyword);
+		createDecryptMatrix(keyword);
+	}
+
+    string encryptText(string message);
+    string decryptText(string message);
 
 private:
-    void createEncryptMatrix(string keyword);
+	string sanitizeKeyword(string kwrd);
+	
+    int mod26(int n);
+    int modInverse(int a, int m);
+    int createEncryptMatrix(string keyword);
     void createDecryptMatrix(string keyword);
-    
+
+
     int encryptMatrix[3][3] {};
     int decryptMatrix[3][3] {};
 };
@@ -50,8 +70,8 @@ public:
 		setPermutationOrder();
 	}
 
-	string encrypt(string cipher);
-	string decrypt(string cipher);
+	string encryptText(string cipher);
+	string decryptText(string cipher);
 
 	void setKeyword(string keyword){
 		key = keyword;
@@ -71,8 +91,8 @@ public:
 	NullCipher(){
 		generateDictonary();
 	}
-	string decodeText(string text);
-	string encodeText(string text);
+	string decryptText(string text);
+	string encryptText(string text);
 
 private:
 	void generateDictonary(void);
@@ -80,3 +100,4 @@ private:
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#endif //DENCRYPTOR_2H

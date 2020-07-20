@@ -21,7 +21,7 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////
 #include "DEncryptor1.h"
-// #include "DEncryptor2.h"
+#include "DEncryptor2.h"
 #include <iostream>
 #include <unistd.h>
 #include <fstream>
@@ -31,7 +31,7 @@ using namespace std;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 /**
-Prompts the user for a keyword. 
+Prompts the user for a keyword.
 @note A keyword is required for some ciphers
 @returns Keyword fetched from user
 */
@@ -45,7 +45,7 @@ string getKeyword() {
 
 //////////////////////////////////////////////////////////////////////////////////////////
 /**
-Prompts the user for a shift. 
+Prompts the user for a shift.
 Conditions:
 c => Caesar cipher
 a => Alberti's disk cipher
@@ -114,7 +114,7 @@ Reads text form a file/CLI, encryts/decrypts and then gives output by writing to
 @param cipher Sets the cipher to use
 @param toEncrypt Sets whether to encrypt or decrypt
 @param infile Name of the file to be read
-@param outfile Name of the file where o/p should be written 
+@param outfile Name of the file where o/p should be written
 @returns Returns 0 upon success
 @note Does all the managing work
 */
@@ -336,95 +336,187 @@ void showHelp() {
     cout << "\nDesigned and developed by Rutuparn Pawar <InputBlackBoxOutput>" << endl;
 }
 //////////////////////////////////////////////////////////////////////////////////////////
-int main(int argc, char* argv[]){
-    bool toReturn {false};
-    string cipher {"C"}, infile {}, outfile {"outfile"};
-    bool toEncrypt {false};
+// int main(int argc, char* argv[]){
+//     bool toReturn {false};
+//     string cipher {"C"}, infile {}, outfile {"outfile.txt"};
+//     bool toEncrypt {false};
 
-    if(argc == 1) {
-         // Interactive mode
-        processStuff(true);
-        return 0;
+//     if(argc == 1) {
+//          // Interactive mode
+//         processStuff(true);
+//         return 0;
+//     }
+//     else {
+//         int opt;
+
+//         while((opt = getopt(argc, argv, ":io:c:e:d:h")) != -1) {
+
+//             switch(opt) {
+//                 case 'i': processStuff(true); toReturn=true; break;
+
+//                 case 'e': if(infile.length() == 0) {
+//                                 infile = optarg;
+//                                 toEncrypt = true;
+//                             }
+//                           else{
+//                             cout << "Only one operation can be performed at a time";
+//                             toReturn=true;
+//                           }  break;
+
+//                 case 'd': if(infile.length() == 0) {
+//                                 infile = optarg;
+//                             }
+//                           else{
+//                             cout << "Only one operation can be performed at a time";
+//                             toReturn=true;
+//                           }  break; break;
+
+//                 case 'c': if(string(optarg).length() == 1)
+//                             cipher = optarg;
+//                           else{
+//                             cout << "Invalid option for cipher";
+//                             toReturn=true;
+//                           }
+//                         break;
+
+//                 case 'o': outfile = string(optarg); if(!string(outfile).compare("console")) outfile =""; break;
+
+//                 case 'h': showHelp(); toReturn=true; break;
+
+//                 // \nUsage: DEncryptor.exe [-i/-o/-c/-e/-d] [filename]
+//                 case ':': cout << "\nSee help using \'-h\' option\n"; break;
+
+//                 case '?': cout << "\nInvalid option: " << (char)optopt << "\n See all options using \'DEncryptor.exe -h\'"<< endl; break;
+//             }
+//         }
+
+//         if(toReturn == true) return 0;
+
+//         cout << "Processing file: " << infile << endl;
+//         if(toEncrypt)
+//             extendFile(infile);
+//         cout << "Using Cipher: ";
+
+//         if(!cipher.compare("C")) {
+//             cout << "Caesar Cipher" << endl;
+//             processStuff(false, 1, toEncrypt, infile, outfile);
+//         }
+//         else if(!cipher.compare("V")) {
+//             cout << "Vigenere Cipher" << endl;
+//             processStuff(false, 2, toEncrypt, infile, outfile);
+//         }
+//         else if(!cipher.compare("A")) {
+//             cout << "Alberti's Disk Cipher" << endl;
+//             processStuff(false, 3, toEncrypt, infile, outfile);
+//         }
+//         else if(!cipher.compare("P")) {
+//             cout << "Playfair Cipher" << endl;
+//             processStuff(false, 4, toEncrypt, infile, outfile);
+//         }
+
+//         cout << "Done" << endl;
+
+//     }
+
+//     return 0;
+
+//     // The show-stoppers
+//     // Alberti's disk cipher : When dealing with files the first word in a line not decrypting correctly!
+//     // testCiphers();
+
+//     // The following needs to be tested
+//     //extendFile("test/randomText.txt");
+
+// }
+
+void testNewCiphers(void) {
+
+    int cipher {1};
+    int toEncrypt {0};
+
+    cout << "------------------------------------------------------------------------" << endl;
+    cout << "   DEncryptor" << endl;
+    cout << "------------------------------------------------------------------------" << endl;
+
+    do {
+        cout << "\nWhich cipher do you want to use?" << endl;
+        cout << "1 - XOR cipher \n2 - Hill Cipher" << endl;
+        cout << "3 - Transposition Cipher\n4 - Null Cipher\n" << endl;
+        cout << "Enter choice:";
+        cin >> cipher;
+        if(cipher < 1 || cipher > 4) cout << "Please enter a valid choice!\n" << endl;
+    } while(cipher < 1 || cipher > 4);
+
+    do {
+        cout << "\nDo you want to encrypt or decrpyt?" << endl;
+        cout << "0 - Encrypt \n1 - Decrypt\n" << endl;
+        cout << "Enter choice:";
+        cin >> toEncrypt;
+        if(!(toEncrypt == 0 || toEncrypt == 1)) cout << "Please enter a valid choice!\n" << endl;
+    }while(!(toEncrypt == 0 || toEncrypt == 1));
+
+    cin.sync(); // Clear buffer
+
+
+    string user_input {}, user_output {};
+    cout << "Input: ";
+    getline(cin, user_input);
+
+    switch(cipher) {
+        case 1:{
+                    printCipherHeader("XOR Cipher");
+                    XOR_Cipher XC((char)getShift('c'));                 // Modify getShift to get char
+                     if(toEncrypt)
+                        user_output = XC.decryptText(user_input);
+                    else
+                        user_output = XC.encryptText(user_input);
+               }
+               break;
+
+        case 2:{
+                    printCipherHeader("Hill Cipher");
+                    HillCipher HC(getKeyword());
+                    if(toEncrypt)
+                        user_output = HC.decryptText(user_input);
+                    else
+                        user_output = HC.encryptText(user_input);
+               }
+               break;
+
+        case 3:{
+                    printCipherHeader("Transposition Cipher");
+                    TranspositionCipher TC(getKeyword());
+                    if(toEncrypt)
+                        user_output = TC.decryptText(user_input);
+                    else
+                        user_output = TC.encryptText(user_input);
+                }
+                break;
+
+        case 4:{
+                    printCipherHeader("Null Cipher");
+                    NullCipher NC;
+                    if(toEncrypt)
+                        user_output = NC.decryptText(user_input);
+                    else
+                        user_output = NC.encryptText(user_input);
+               }
+               break;
+
+        default: cout << "Something went wrong!" << endl;
     }
-    else {
-        int opt;
 
-        while((opt = getopt(argc, argv, ":io:c:e:d:h")) != -1) {
+    cout << "Output: " << user_output << endl;
+    cout << "------------------------------------------------------------------------" << endl;
+    cout << "Press any key to exit..." << endl;
+    getchar();   //wait until any key is pressed
 
-            switch(opt) {
-                case 'i': processStuff(true); toReturn=true; break;
+}
 
-                case 'e': if(infile.length() == 0) {
-                                infile = optarg;
-                                toEncrypt = true;
-                            }
-                          else{
-                            cout << "Only one operation can be performed at a time";
-                            toReturn=true;
-                          }  break;
 
-                case 'd': if(infile.length() == 0) {
-                                infile = optarg;
-                            }
-                          else{
-                            cout << "Only one operation can be performed at a time";
-                            toReturn=true;
-                          }  break; break;
-
-                case 'c': if(string(optarg).length() == 1)
-                            cipher = optarg;
-                          else{
-                            cout << "Invalid option for cipher";
-                            toReturn=true;
-                          }
-                        break;
-
-                case 'o': outfile = string(optarg); if(!string(outfile).compare("console")) outfile =""; break;
-
-                case 'h': showHelp(); toReturn=true; break;
-
-                // \nUsage: DEncryptor.exe [-i/-o/-c/-e/-d] [filename]
-                case ':': cout << "\nSee help using \'-h\' option\n"; break;
-
-                case '?': cout << "\nInvalid option: " << (char)optopt << "\n See all options using \'DEncryptor.exe -h\'"<< endl; break;
-            }
-        }
-
-        if(toReturn == true) return 0;
-
-        cout << "Processing file: " << infile << endl;
-        cout << "Using Cipher: ";
-
-        if(!cipher.compare("C")) {
-            cout << "Caesar Cipher" << endl;
-            processStuff(false, 1, toEncrypt, infile, outfile);
-        }
-        else if(!cipher.compare("V")) {
-            cout << "Vigenere Cipher" << endl;
-            processStuff(false, 2, toEncrypt, infile, outfile);
-        }
-        else if(!cipher.compare("A")) {
-            cout << "Alberti's Disk Cipher" << endl;
-            processStuff(false, 3, toEncrypt, infile, outfile);
-        }
-        else if(!cipher.compare("P")) {
-            cout << "Playfair Cipher" << endl;
-            processStuff(false, 4, toEncrypt, infile, outfile);
-        }
-
-        cout << "Done" << endl;
-
-    }
-
+int main() {
+    testNewCiphers();
     return 0;
-
-    // The show-stoppers 
-    // Alberti's disk cipher : When dealing with files the first word in a line not decrypting correctly!
-    // testCiphers();
-
-    // The following needs to be tested
-    //extendFile("test/randomText.txt");
-
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////

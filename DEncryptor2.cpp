@@ -1,16 +1,105 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 #include "DEncryptor2.h"
+#include <math.h>
 
-// Note: Do not forget to escape symbols like "
-string XOR_Cipher::encryptDecrypt(string text) {
+string XOR_Cipher::toBinary(int n) {
+    bin = (n%2 == 0 ?"0":"1") + bin;
+    if (n / 2 != 0) {
+        toBinary(n / 2);
+    }
+    return bin;
+}
+
+
+string XOR_Cipher::encryptText(string text) {
     string out {};
-    for (size_t i = 0; i < text.length(); i++)
-            out += text.at(i) ^ XORwith;
+    string t {};
+    // cout << XORwith << endl;
+
+    for (size_t i = 0; i < text.length(); i++) {
+        t = toBinary((int) text.at(i));
+        cout << text.at(i) <<"  " << t.length() << endl;
+
+        if(t.length() < 7) {
+            for(size_t k=0; k<7-t.length(); k++) {
+                t = '0' + t;
+            }
+
+        }
+
+        for(size_t j = 0; j < 7; j++) {
+            if(t.at(j) == XORwith.at(j))
+                out += '0';
+            else
+                out += '1';
+        }
+
+        out += '-';
+        bin = "";
+    }
     return out;
 }
 
+int XOR_Cipher::fromBinary(string bin) {
+    int out {0};
+    int power {0};
+
+    for(int i=6; i>-1; i--) {
+        if (bin.at(i) == '1') {
+            out += pow(2, power);
+        }
+        power++;
+    }
+
+    // Move to main and uncomment for testing this function
+    // cout << C.fromBinary("1000001"); // B
+    return out;
+}
+
+string XOR_Cipher::decryptText(string text) {
+    string out {};
+    string t1 {};
+    string t2 {};
+
+    for (size_t i = 0; i < text.length(); i++) {
+        if(text.at(i) == '-'){
+            for(size_t j = 0; j < 7; j++) {
+                if(t1.at(j) == XORwith.at(j))
+                    t2 += '0';
+                else
+                    t2 += '1';
+            }
+
+            out += fromBinary(t2);
+            t1 = ""; t2 = "";
+        }
+        else
+            t1 += text.at(i);
+    }
+    return out;
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void HillCipher::createEncryptMatrix(string keyword) {
+string HillCipher::sanitizeKeyword(string kwrd) {
+	int offset = 65;
+
+	if(kwrd.length() > 6) {
+		return kwrd.substr(0,6);
+	}
+	else if (kwrd.length() < 6) {
+		for(size_t i; i< 6-kwrd.length(); i++) {
+			kwrd += (char) offset;
+			offset++;
+		}
+		return kwrd;
+	}
+	else {
+		return kwrd;
+	}
+}
+
+
+
+int HillCipher::createEncryptMatrix(string keyword) {
     int k = 0;
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
@@ -18,18 +107,66 @@ void HillCipher::createEncryptMatrix(string keyword) {
             k++;
         }
     }
+
+    // Check if determinant != 0
+    int determinant {0};
+    for(int i = 0; i < 3; i++)
+      determinant += (encryptMatrix[0][i] * (encryptMatrix[1][(i+1)%3] * encryptMatrix[2][(i+2)%3] - encryptMatrix[1][(i+2)%3] * encryptMatrix[2][(i+1)%3]));
+
+    if(determinant == 0) {
+        cout << "This keyword cannot be used since it does not support the mathematics behind this cipher" << endl;
+        return 1;
+    }
+
+    // Print out to the console
+    cout << "Encrypt Matrix" <<endl;
+    for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 3; j++)
+            cout << encryptMatrix[i][j] << "\t";
+        cout << "\n";
+    }
+    return 0;
 }
 
-//Decryption: Not implemented yet!
+int HillCipher::mod26(int n) {
+    if(n>=0)
+        return n % 26;
+    else
+        return 26 + (n % 26);
+}
+
+int HillCipher::modInverse(int a, int m) {
+    a = a%m;
+    for (int x=1; x<m; x++)
+       if ((a*x) % m == 1)
+          return x;
+    return 0;
+}
+
 void HillCipher::createDecryptMatrix(string keyword) {
-    createEncryptMatrix(keyword);
-    // getDecryptMatrix = inverse of encryption matrix
-    return;
+    int determinant {0};
+    for(int i = 0; i < 3; i++)
+      determinant += (encryptMatrix[0][i] * (encryptMatrix[1][(i+1)%3] * encryptMatrix[2][(i+2)%3] - encryptMatrix[1][(i+2)%3] * encryptMatrix[2][(i+1)%3]));
+
+    cout << modInverse(mod26(determinant), 26) << endl;
+
+    for(int i = 0; i < 3; i++){
+      for(int j = 0; j < 3; j++)
+        decryptMatrix[i][j] = mod26(((encryptMatrix[(j+1)%3][(i+1)%3] * encryptMatrix[(j+2)%3][(i+2)%3]) - (encryptMatrix[(j+1)%3][(i+2)%3] * encryptMatrix[(j+2)%3][(i+1)%3])) * determinant);
+    }
+
+
+    // Print out to the console
+    cout << "Decrypt Matrix" <<endl;
+    for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 3; j++)
+            cout << decryptMatrix[i][j] << "\t";
+        cout << "\n";
+    }
+
 }
 
-string HillCipher::encrypt(string message, string keyword) {
-    createEncryptMatrix(keyword);
-
+string HillCipher::encryptText(string message) {
     int messageVector[3][1] {};
     for (int i = 0; i < 3; i++)
         messageVector[i][0] = (message[i]) % 65;
@@ -54,22 +191,41 @@ string HillCipher::encrypt(string message, string keyword) {
     return cipher;
 }
 
-// int main() {
-//     string message = "APP";
-//     string key = "ABCDEFGHI";
-//     return 0;
-// }
+string HillCipher::decryptText(string cipher) {
+    int cipherVector[3][1] {};
+    for (int i = 0; i < 3; i++)
+        cipherVector[i][0] = (cipher[i]) % 65;
+
+    int messageMatrix[3][1] {};
+
+    int x, i, j;
+    for (i = 0; i < 3; i++)  {
+        for (j = 0; j < 1; j++) {
+            messageMatrix[i][j] = 0;
+            for (x = 0; x < 3; x++) {
+                messageMatrix[i][j] += decryptMatrix[i][x] * cipherVector[x][j];
+            }
+            messageMatrix[i][j] = messageMatrix[i][j] % 26;
+        }
+    }
+
+    string message{};
+    for (int i = 0; i < 3; i++)
+        message += (char) (messageMatrix[i][0] + 65);
+
+    return message;
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 void TranspositionCipher::setPermutationOrder() {
     if(key.length() == 4) {
-        for(int i=0; i < key.length(); i++) {
+        for(uint8_t i=0; i < key.length(); i++) {
             keyMap[key.at(i)] = i;
         }
     }
 }
 
-string TranspositionCipher::encrypt(string msg) {
+string TranspositionCipher::encryptText(string msg) {
     int row,col,j;
     string cipher = "";
 
@@ -103,7 +259,7 @@ string TranspositionCipher::encrypt(string msg) {
     return cipher;
 }
 
-string TranspositionCipher::decrypt(string cipher) {
+string TranspositionCipher::decryptText(string cipher) {
     int col = key.length();
     int row = cipher.length()/col;
     char cipherMat[row][col];
@@ -137,7 +293,7 @@ string TranspositionCipher::decrypt(string cipher) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-string NullCipher::encodeText(string text) {
+string NullCipher::encryptText(string text) {
     string out {};
 
     srand(time(nullptr));
@@ -155,7 +311,7 @@ string NullCipher::encodeText(string text) {
     return out;
 }
 
-string NullCipher::decodeText(string text) {
+string NullCipher::decryptText(string text) {
     string out {};
     text = ' ' + text;
 

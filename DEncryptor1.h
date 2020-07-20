@@ -4,6 +4,9 @@
 * @version 1.0
 *
 */
+
+#ifndef DENCRYTOR_1H
+#define DENCRYTOR_1H
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 #include <iostream>
 #include <cctype>
@@ -36,8 +39,9 @@ public:
      Prints encrypted message on the terminal
      @param code Encrypted message
     */
-	void printCode(string code) {
-		code = M.convertToMorseCode(code);
+	void printCode(string code, bool isMorse=true) {
+		if(isMorse == true)
+            code = M.convertToMorseCode(code);
 		cout << "Encrypted message:" << code << endl;
 	}
 
@@ -45,12 +49,13 @@ public:
      Prompts the user for encrypted message
      @returns Encrypted message
     */
-	string getCodeFromUser() {
+	string getCodeFromUser(bool isMorse=true) {
 		string code;
 		cout << "Enter the message you want to decrypt: ";
    		getline(cin, code);
 		//cout << "Entered message:" << code <<endl;
-		code = M.convertFromMorseCode(code);
+		if(isMorse == true)
+            code = M.convertFromMorseCode(code);
 		return code;
 	}
 
@@ -264,3 +269,4 @@ private:
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
+#endif //DENCRYPTOR_1H
