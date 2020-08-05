@@ -116,6 +116,9 @@ string MorseCode::convertFromMorseCode(string morseIn) {
    	string morseOut {};
    	string temp {};
 
+   	string::const_iterator it = morseIn.end();
+   	if(*it != '-') morseIn += '-';
+
    	char check {};
    	for(unsigned int i=0; i<morseIn.length(); i++) {
    		check = morseIn.at(i);

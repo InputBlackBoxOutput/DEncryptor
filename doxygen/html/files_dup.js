@@ -1,7 +1,7 @@
 var files_dup =
 [
-    [ "DEncryptor.cpp", "_d_encryptor_8cpp.html", "_d_encryptor_8cpp" ],
-    [ "DEncryptor.h", "_d_encryptor_8h.html", [
+    [ "DEncryptor1.cpp", "_d_encryptor1_8cpp.html", "_d_encryptor1_8cpp" ],
+    [ "DEncryptor1.h", "_d_encryptor1_8h.html", [
       [ "UserInterface", "class_user_interface.html", "class_user_interface" ],
       [ "CaesarCipher", "class_caesar_cipher.html", "class_caesar_cipher" ],
       [ "VigenereCipher", "class_vigenere_cipher.html", "class_vigenere_cipher" ],

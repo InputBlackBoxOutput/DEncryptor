@@ -175,6 +175,7 @@ string AlbertiDiskCipher::encryptText(string msg, bool isInteractive) {
 		msg = UI.getMessageFromUser();
 	string code {};
 
+	shift = 0;
 	srand(time(nullptr));
 	toUpper(msg);
 	for(unsigned int i=0; i<msg.length(); i++) {
@@ -190,6 +191,7 @@ string AlbertiDiskCipher::encryptText(string msg, bool isInteractive) {
 			code += stationary.at(shift);
 		}
 	}
+	//cout << code << endl;
 	if(isInteractive)
 		UI.printCode(code, false);
 	return code;
@@ -214,10 +216,10 @@ string AlbertiDiskCipher::decryptText(string code, bool isInteractive) {
 				msg += stationary.at(26 + (rotating.find(code.at(i))-shift));
 			else
 				msg += stationary.at((rotating.find(code.at(i))-shift));
-			// cout << msg << endl;
+			//cout << msg << endl;
 		}
 		else {
-			if((int)code.at(i) == (int)"_")
+			if((int)code.at(i) == (int)" ")
 				msg += " ";
 			else
 				msg += code.at(i);
@@ -304,7 +306,20 @@ void PlayFairCipher::encryptDecryptPieces(string message) {
     int j,k,p,q;
 	string nmsg {};
 
-    getText( msg, true, toEncrypt );
+    msg = message;
+
+    // Sanitize text to deal with J
+    for(size_t i=0; i< message.length(); i++ ) {
+        if( message.at(i) < 65 || message.at(i) > 90 )
+            continue;
+        if( message.at(i) == 'J') {
+            //message.at(i) = 'I';
+            msg = message;
+            return;
+        }
+
+    }
+
     msg = message;
     int dir = (toEncrypt)? 1: -1;
 
@@ -313,7 +328,7 @@ void PlayFairCipher::encryptDecryptPieces(string message) {
 	        if( getPos( *it, p, q)) {
 	            //for same row
 	            if( j == p ) {
-	               nmsg+= getChar( j, k + dir );
+	               nmsg += getChar( j, k + dir );
 	               nmsg += getChar( p, q + dir );
 	            }
 	            //for same column
@@ -343,35 +358,6 @@ bool PlayFairCipher::getPos( char l, int &c, int &d ) {
       			return true;
       		}
     return false;
-}
-
-void PlayFairCipher::getText( string t, bool m, bool e ) {
-    for( string::iterator it = t.begin(); it != t.end(); it++ ) {
-        //to choose J = I or no Q in the alphabet.
-        *it = toupper( *it );
-        if( *it < 65 || *it > 90 )
-            continue;
-        if( *it == 'J' && m )
-            *it = 'I';
-        else if( *it == 'Q' && !m )
-            continue;
-        msg += *it;
-      }
-
-      if( e ) {
-        string nmsg = ""; size_t len = msg.length();
-        for( size_t x = 0; x < len; x += 2 ) {
-            nmsg += msg[x];
-            if( x + 1 < len ) {
-               if( msg[x] == msg[x + 1] ) nmsg += 'X';
-               nmsg += msg[x + 1];
-            }
-        }
-        msg = nmsg;
-      }
-
-      if( msg.length() & 1 )
-      msg += 'X';
 }
 
 

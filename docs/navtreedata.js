@@ -25,6 +25,17 @@
 var NAVTREE =
 [
   [ "DEncryptor", "index.html", [
+    [ "DEncryptor", "index.html#autotoc_md0", [
+      [ "Usage", "index.html#autotoc_md1", [
+        [ "Using in interactive mode", "index.html#autotoc_md2", null ],
+        [ "Using in the non-interactive mode", "index.html#autotoc_md3", [
+          [ "Options available in the non-interactive mode:", "index.html#autotoc_md4", null ]
+        ] ]
+      ] ],
+      [ "Disclaimer:", "index.html#autotoc_md5", null ],
+      [ "License", "index.html#autotoc_md6", null ],
+      [ "Copyright 2020 Rutuparn Pawar <InputBlackBoxOutput>", "index.html#autotoc_md7", null ]
+    ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -45,7 +56,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_d_encryptor_8cpp.html"
+"_d_encryptor1_8cpp.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

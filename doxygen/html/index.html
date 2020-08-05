@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.18"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>DEncryptor: Main Page</title>
+<title>DEncryptor: DEncryptor</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -82,17 +82,78 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </iframe>
 </div>
 
-<div class="header">
+<div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">DEncryptor Documentation</div>  </div>
+<div class="title">DEncryptor </div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><h1><a class="anchor" id="autotoc_md0"></a>
+DEncryptor</h1>
+<p>Encryptor and decryptor for those whose want additional data security</p>
+<h2><a class="anchor" id="autotoc_md1"></a>
+Usage</h2>
+<h3><a class="anchor" id="autotoc_md2"></a>
+Using in interactive mode</h3>
+<p>Run <code>DEncryptor.exe</code> and enter relevant information when prompted.</p>
+<h3><a class="anchor" id="autotoc_md3"></a>
+Using in the non-interactive mode</h3>
+<p>To encrypt a file using default settings:</p>
+<p><code> DEncryptor.exe -e Filename.ext </code></p>
+<p>To decrypt a file encrypted using default settings:</p>
+<p><code> DEncryptor.exe -d Filename.ext </code></p>
+<h4><a class="anchor" id="autotoc_md4"></a>
+Options available in the non-interactive mode:</h4>
+<dl>
+<dt>-e  </dt>
+<dd>Encrypt the specified file </dd>
+<dt>-d  </dt>
+<dd>Decrypt the specified file </dd>
+<dt>-c  </dt>
+<dd><p class="startdd">Set the cipher to use. </p>
+<p class="interdd">Default cipher is 'Caesar cipher' </p>
+<p class="interdd"></p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Cipher </th><th class="markdownTableHeadNone">Option  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">4-Level Envelope </td><td class="markdownTableBodyNone">E  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Caesar cipher </td><td class="markdownTableBodyNone">C  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Vigenere's cipher </td><td class="markdownTableBodyNone">V  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Alberti's disk cipher </td><td class="markdownTableBodyNone">A  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Playfair cipher </td><td class="markdownTableBodyNone">P  </td></tr>
+</table>
+<p class="enddd"></p>
+</dd>
+<dt>-o  </dt>
+<dd><p class="startdd">Specify output file </p>
+<p class="interdd">Default output file is named 'outfile'</p>
+<p class="interdd"></p>
+<p class="interdd">Use 'console' as file name to print output on console </p>
+<p class="enddd"></p>
+</dd>
+<dt>- i </dt>
+<dd>Use in interactive mode </dd>
+</dl>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Disclaimer:</h2>
+<p>This application has not been designed to deal with highly sensitive data.</p>
+<p>Under no circumstances will the creator/s of this application be held responsible or liable in any way for any claims, damages, losses, expenses, costs or liabilities whatsoever (including, without limitation, any direct or indirect damages for loss of profits, business interruption or loss of information) resulting or arising directly or indirectly from your use of or inability to use this application even if the creator/s of this application have been advised of the possibility of such damages in advance.</p>
+<h2><a class="anchor" id="autotoc_md6"></a>
+License</h2>
+<p>GNU Lesser General Public License v3.0</p>
+<h2><a class="anchor" id="autotoc_md7"></a>
+Copyright 2020 Rutuparn Pawar &lt;InputBlackBoxOutput&gt;</h2>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed May 27 2020 20:03:36 for DEncryptor by
+    <li class="footer">Generated on Wed Aug 5 2020 23:47:26 for DEncryptor by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.18 </li>
   </ul>

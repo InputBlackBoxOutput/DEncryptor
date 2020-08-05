@@ -89,7 +89,7 @@ $(document).ready(function(){initNavTree('main_8cpp.html',''); initResizable(); 
 <div class="title">main.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="_d_encryptor_8h_source.html">DEncryptor.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="_d_encryptor1_8h_source.html">DEncryptor1.h</a>&quot;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;unistd.h&gt;</code><br />
 <code>#include &lt;fstream&gt;</code><br />
@@ -109,6 +109,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a8c3126060fb619403036b269112910d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a8c3126060fb619403036b269112910d0">extendFile</a> (const string filename)</td></tr>
 <tr class="memdesc:a8c3126060fb619403036b269112910d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">To deal with files that do not have a new line at the end.  <a href="main_8cpp.html#a8c3126060fb619403036b269112910d0">More...</a><br /></td></tr>
 <tr class="separator:a8c3126060fb619403036b269112910d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a846338b99b9027599d51e8e3a69aae15"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a846338b99b9027599d51e8e3a69aae15">envelope4</a> (bool isInteractive, bool toEncrypt=NULL, const string infile=&quot;&quot;, const string outfile=&quot;&quot;)</td></tr>
+<tr class="memdesc:a846338b99b9027599d51e8e3a69aae15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides four-level envelope encryption/decryption.  <a href="main_8cpp.html#a846338b99b9027599d51e8e3a69aae15">More...</a><br /></td></tr>
+<tr class="separator:a846338b99b9027599d51e8e3a69aae15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf55018b1f80197542abbefeefc5f2b1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#acf55018b1f80197542abbefeefc5f2b1">processStuff</a> (bool isInteractive, int cipher=0, bool toEncrypt=NULL, const string infile=&quot;&quot;, const string outfile=&quot;&quot;)</td></tr>
 <tr class="memdesc:acf55018b1f80197542abbefeefc5f2b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads text form a file/CLI, encryts/decrypts and then gives output by writing to a file or printing on CLI.  <a href="main_8cpp.html#acf55018b1f80197542abbefeefc5f2b1">More...</a><br /></td></tr>
 <tr class="separator:acf55018b1f80197542abbefeefc5f2b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,6 +134,58 @@ LICENSE</h1>
 <p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
 <p>You should have received a copy of the GNU General Public License along with this program. If not, see <a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a846338b99b9027599d51e8e3a69aae15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a846338b99b9027599d51e8e3a69aae15">&#9670;&nbsp;</a></span>envelope4()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int envelope4 </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isInteractive</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>toEncrypt</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const string&#160;</td>
+          <td class="paramname"><em>infile</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const string&#160;</td>
+          <td class="paramname"><em>outfile</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Provides four-level envelope encryption/decryption. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">isInteractive</td><td>Sets whether operations need to be done in interactive mode </td></tr>
+    <tr><td class="paramname">toEncrypt</td><td>Sets whether to encrypt or decrypt </td></tr>
+    <tr><td class="paramname">infile</td><td>Name of the file to be read </td></tr>
+    <tr><td class="paramname">outfile</td><td>Name of the file where o/p should be written </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns 0 upon success </dd></dl>
+
+</div>
+</div>
 <a id="a8c3126060fb619403036b269112910d0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8c3126060fb619403036b269112910d0">&#9670;&nbsp;</a></span>extendFile()</h2>
 
@@ -320,7 +375,7 @@ LICENSE</h1>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="main_8cpp.html">main.cpp</a></li>
-    <li class="footer">Generated on Wed May 27 2020 20:03:36 for DEncryptor by
+    <li class="footer">Generated on Wed Aug 5 2020 23:47:26 for DEncryptor by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.18 </li>
   </ul>

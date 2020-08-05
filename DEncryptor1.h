@@ -4,9 +4,6 @@
 * @version 1.0
 *
 */
-
-#ifndef DENCRYTOR_1H
-#define DENCRYTOR_1H
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 #include <iostream>
 #include <cctype>
@@ -41,7 +38,8 @@ public:
     */
 	void printCode(string code, bool isMorse=true) {
 		if(isMorse == true)
-            code = M.convertToMorseCode(code);
+			code = M.convertToMorseCode(code);
+
 		cout << "Encrypted message:" << code << endl;
 	}
 
@@ -54,11 +52,10 @@ public:
 		cout << "Enter the message you want to decrypt: ";
    		getline(cin, code);
 		//cout << "Entered message:" << code <<endl;
-		if(isMorse == true)
-            code = M.convertFromMorseCode(code);
+		if(isMorse== true)
+			code = M.convertFromMorseCode(code);
 		return code;
 	}
-
 	/**
      Prints decrypted message on the terminal
      @param msg Decrypted message
@@ -69,7 +66,7 @@ public:
 
 };
 
-extern UserInterface UI;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  This class provides all functionalities related with Caesar cipher.
@@ -255,13 +252,16 @@ public:
     	createEncoder(keyword, true);
     }
 
+    /**
+    Display encoder grid
+    */
+    void displayGrid();
+
 private:
 	void encryptDecryptPieces(string message);
     void createEncoder( string k, bool m );
-    void displayGrid();
 	char getChar( int a, int b );
 	bool getPos( char l, int &c, int &d );
-    void getText( string t, bool m, bool e );
 
 	char n[5][5];
 	bool toEncrypt {true};
@@ -269,4 +269,3 @@ private:
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-#endif //DENCRYPTOR_1H
