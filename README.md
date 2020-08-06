@@ -6,13 +6,13 @@ Encryptor and decryptor for those whose want additional data security
 Run <code>DEncryptor.exe</code> and enter relevant information when prompted.
 
 ### Using in the non-interactive mode
-To encrypt a file using default settings:
+To encrypt a file using four-level envelope:
 
-<code> DEncryptor.exe -e Filename.ext </code>
+<code> DEncryptor.exe -e Filename.ext -c E </code>
 
-To decrypt a file encrypted using default settings:
+To decrypt a file encrypted using four-level envelope:
 
-<code> DEncryptor.exe -d Filename.ext </code>
+<code> DEncryptor.exe -d Filename.ext -c E</code>
 
 #### Options available in the non-interactive mode:
 <dl>
@@ -22,34 +22,32 @@ To decrypt a file encrypted using default settings:
     <dd> Decrypt the specified file</dd>
 	<dt>-c <Option></dt>
     <dd> Set the cipher to use. <p>Default cipher is 'Caesar cipher' </p>
-         <table>
-            <th>
-                <td> Cipher </td>
-                <td> Option </td>
-            </th>
-            <tbody>
-              <tr>
-                <td> 1. </td>
-                <td> Caesar cipher </td>
-                <td> C </td>
-              </tr>
-              <tr>
-                <td> 2. </td>
-                <td> Vigenere's cipher </td>
-                <td> V </td>
-              </tr>
-              <tr>
-                <td> 3. </td>
-                <td> Alberti's disk cipher </td>
-                <td> A </td>
-              </tr>	
-              <tr>
-                <td> 4. </td>
-                <td> Playfair cipher </td>
-                <td> P </td>
-              </tr>
-            </tbody>
-          </table>
+	<table>
+		<tr>
+			<td><strong> Cipher </strong></td>
+			<td><strong> Option </strong></td>
+		</tr>
+		<tr>
+			<td> Four-Level Envelope </td>
+			<td> E </td>
+		</tr>
+		<tr>
+			<td> Caesar cipher </td>
+			<td> C </td>
+		</tr>
+		<tr>
+			<td> Vigenere's cipher </td>
+			<td> V </td>
+		</tr>
+		<tr>
+			<td> Alberti's disk cipher </td>
+			<td> A </td>
+		</tr>	
+		<tr>
+			<td> Playfair cipher </td>
+			<td> P </td>
+		</tr>
+         </table>
     </dd>
 	<dt>-o <filename></dt>
     <dd> Specify output file          
@@ -61,8 +59,8 @@ To decrypt a file encrypted using default settings:
 </dl>
 
 ## Screenshots (Interactive mode)
-![Screenshot1](https://github.com/InputBlackBoxOutput/DEncryptor/blob/master/img/Screenshot_Encrypt.jpg)
-![Screenshot2](https://github.com/InputBlackBoxOutput/DEncryptor/blob/master/img/Screenshot_Decrypt.jpg)
+<img src="https://github.com/InputBlackBoxOutput/DEncryptor/blob/master/img/V1-E%20Screenshot_E.png" alt="img/V1-E Screenshot_E.png">
+<img src="https://github.com/InputBlackBoxOutput/DEncryptor/blob/master/img/V1-E%20Screenshot_D.png" alt="img/V1-E Screenshot_D.png">
 
 ## For Developers
 You may contibute to this project by developing features.
