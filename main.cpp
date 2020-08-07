@@ -571,7 +571,7 @@ int main(int argc, char* argv[]){
         cout << "Processing file: " << infile << endl;
 
         // Add a new line at the end of file
-		if(toEncrypt == true)
+		if(toEncrypt == true && cipher.compare("E") && cipher.compare("P"))
             extendFile(infile);
 
         cout << "Using Cipher: ";
