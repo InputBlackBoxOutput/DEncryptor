@@ -1,5 +1,5 @@
 # DEncryptor
-Encryptor and decryptor for those whose want additional data security 
+Encryptor and decryptor for those who want additional text data security 
 
 ## Usage
 ### Using in interactive mode
