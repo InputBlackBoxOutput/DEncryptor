@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="DEncryptor" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/DEncryptor" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add option="-static-libstdc++" />
+					<Add option="-static-libgcc" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/DEncryptor" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-static-libstdc++" />
+					<Add option="-static-libgcc" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="inc/alberti_disk.h" />
+		<Unit filename="inc/caesar.h" />
+		<Unit filename="inc/playfair.h" />
+		<Unit filename="inc/vigenere.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="src/alberti_disk.cpp" />
+		<Unit filename="src/caesar.cpp" />
+		<Unit filename="src/playfair.cpp" />
+		<Unit filename="src/vigenere.cpp" />
+		<Unit filename="test/albertiText.txt" />
+		<Unit filename="test/caesarText.txt" />
+		<Unit filename="test/playfairText.txt" />
+		<Unit filename="test/randomText.txt" />
+		<Unit filename="test/testText.txt" />
+		<Unit filename="test/vigenereText.txt" />
+		<Unit filename="utils.h" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>
