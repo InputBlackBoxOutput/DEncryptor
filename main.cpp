@@ -304,11 +304,11 @@ int main(int argc, char *argv[])
 
                 case 'o': outfile = string(optarg); break;
 
-                case 'h': UI.showHelp(); toReturn=true; break;
+                case 'h': UI.showHelp(); toReturn = true; break;
 
-                case ':': cout << "\nSee help using \'-h\' option\n"; break;
+                case ':': cout << "\nSee help using \'-h\' option\n"; toReturn = true; break;
 
-                case '?': cout << "\nInvalid option: " << (char)optopt << "\n See all options using \'DEncryptor.exe -h\'"<< endl; break;
+                case '?': cout << "\nInvalid option: " << (char)optopt << "\n See all options using \'DEncryptor.exe -h\'"<< endl; toReturn = true; break;
             }
         }
     }
