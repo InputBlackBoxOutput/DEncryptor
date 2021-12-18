@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-static-libstdc++" />
@@ -26,6 +27,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-static-libstdc++" />
@@ -37,6 +39,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="envelope.h" />
 		<Unit filename="inc/alberti_disk.h" />
 		<Unit filename="inc/caesar.h" />
 		<Unit filename="inc/playfair.h" />

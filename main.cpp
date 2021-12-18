@@ -10,7 +10,7 @@ using namespace std;
 #include "inc/caesar.h"
 #include "inc/playfair.h"
 #include "inc/vigenere.h"
-
+#include "envelope.h"
 
 /**
  This class provides all functionalities related with text input and output.
@@ -226,7 +226,8 @@ void interactive() {
 
     }
 
-
+    cout << "Press any key to exit" << endl;
+    getchar();
 }
 
 void testCiphers(){
@@ -250,15 +251,180 @@ void testCiphers(){
 
     cout << v.encryptText("Apple") << endl;
     cout << v.decryptText(v.encryptText("Apple")) << endl;
+
+    Envelope e("Key");
+
+    cout << e.encryptText("Apple") << endl;
+    cout << e.decryptText(e.encryptText("Apple")) << endl;
 }
 
 
 int main(int argc, char *argv[])
 {
-    interactive();
+    bool toReturn {false};
+    string cipher {"C"}, infile {}, outfile {"output.txt"};
+    bool toEncrypt {false};
+
+    if(argc == 1) {
+        interactive();
+        return 0;
+    }
+    else {
+        int opt;
+
+        while((opt = getopt(argc, argv, ":io:c:e:d:h")) != -1) {
+
+            switch(opt) {
+                case 'i': interactive(); toReturn=true; break;
+
+                case 'e': if(infile.length() == 0) {
+                                infile = optarg;
+                                toEncrypt = true;
+                            }
+                          else{
+                            cout << "Only one operation can be performed at a time";
+                            toReturn=true;
+                          }  break;
+
+                case 'd': if(infile.length() == 0) {
+                                infile = optarg;
+                            }
+                          else{
+                            cout << "Only one operation can be performed at a time";
+                            toReturn=true;
+                          }  break; break;
+
+                case 'c': if(string(optarg).length() == 1)
+                            cipher = optarg;
+                          else{
+                            cout << "Invalid option for cipher";
+                            toReturn=true;
+                          }
+                        break;
+
+                case 'o': outfile = string(optarg); break;
+
+                case 'h': UI.showHelp(); toReturn=true; break;
+
+                case ':': cout << "\nSee help using \'-h\' option\n"; break;
+
+                case '?': cout << "\nInvalid option: " << (char)optopt << "\n See all options using \'DEncryptor.exe -h\'"<< endl; break;
+            }
+        }
+    }
+
+    if(toReturn == true) return 0;
+
+    ifstream fin;
+    if(infile != "")
+        fin.open(infile);
+
+    ofstream fout;
+    if(outfile != "")
+        fout.open(outfile);
+
+    string line {};
+
+    cout << "Cipher: ";
+
+    if(!cipher.compare("C")) {
+        cout << "Caesar Cipher" << endl;
+        CaesarCipher c(UI.getShift('c'));
+
+        if(toEncrypt) {
+            while(fin) {
+                getline(fin, line);
+                fout << c.encryptText(line) << endl;
+            }
+        }
+        else {
+            while(fin) {
+                getline(fin, line);
+                fout << c.decryptText(line) << endl;
+            }
+        }
+    }
+    else if(!cipher.compare("V")) {
+        cout << "Vigenere Cipher" << endl;
+        VigenereCipher v(UI.getKeyword());
+
+        if(toEncrypt) {
+            while(fin) {
+                getline(fin, line);
+                fout << v.encryptText(line) << endl;
+            }
+        }
+        else {
+            while(fin) {
+                getline(fin, line);
+                fout << v.decryptText(line) << endl;
+            }
+        }
+    }
+    else if(!cipher.compare("A")) {
+        cout << "Alberti's Disk Cipher" << endl;
+        AlbertiDiskCipher a(UI.getShift('a'));
+
+        if(toEncrypt) {
+            while(fin) {
+                getline(fin, line);
+                fout << a.encryptText(line) << endl;
+            }
+        }
+        else {
+            while(fin) {
+                getline(fin, line);
+                fout << a.decryptText(line) << endl;
+            }
+        }
+    }
+    else if(!cipher.compare("P")) {
+        cout << "Playfair Cipher" << endl;
+        PlayFairCipher p(UI.getKeyword());
+
+        if(toEncrypt) {
+            while(fin) {
+                getline(fin, line);
+                fout << p.encryptText(line) << endl;
+            }
+        }
+        else {
+            while(fin) {
+                getline(fin, line);
+                fout << p.decryptText(line) << endl;
+            }
+        }
+    }
+    else if (!cipher.compare("E")) {
+        cout << "Envelope" << endl;
+        Envelope e(UI.getKeyword());
+
+        if(toEncrypt) {
+            while(fin) {
+                getline(fin, line);
+                fout << e.encryptText(line) << endl;
+            }
+        }
+        else {
+            while(fin) {
+                getline(fin, line);
+                fout << e.decryptText(line) << endl;
+            }
+        }
+
+    }
+    else {
+        cout << "Invalid cipher alphabet" << endl;
+    }
+
+    if(!string(outfile).compare(""))
+        cout << "Output file: output.txt" << endl;
+    else
+        cout << "Output file: " << outfile << endl;
+
+    cout << "Done" << endl;
+
     //testCiphers();
 
-    cout << "Press any key to exit" << endl;
-    getchar();
     return 0;
 }
